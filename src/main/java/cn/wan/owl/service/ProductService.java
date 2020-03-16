@@ -9,10 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * @Author: wanhongji
- * @Date: 2020/2/8
- */
 @Slf4j
 @Service
 public class ProductService {

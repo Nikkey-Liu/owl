@@ -18,6 +18,12 @@ public class CommonResponse {
 
     private int code;
 
+    public CommonResponse(String msg, Object data, int code) {
+        this.msg = msg;
+        this.data = data;
+        this.code = code;
+    }
+
     public static CommonResponse success(Object data) {
         return new CommonResponse("success", data, 0);
     }

@@ -5,11 +5,11 @@
   "homeInfo": {
     "title": "Home",
     "icon": "fa fa-home",
-    "href": "page/welcome-1.html"
+    "href": "/ui/ul-myprofile"
   },
   "logoInfo": {
     "title": "LayuiMini-LOGO",
-    "image": "static.images/logo.png",
+    "image": "images/logo.png",
     "href": ""
   },
   "menuInfo": {
