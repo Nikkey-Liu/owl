@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+
+    <property name="BaseLogDirectory" value="/tmp/owl/logs"/>
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}][%t][%level][%C:%L] %m%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="log" class="ch.qos.logback.core.rolling.RollingFileAppender">\
+        <file>${BaseLogDirectory}/all-logs.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${BaseLogDirectory}/all-logs.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}][%t][%level][%C:%L] %m%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="query" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${BaseLogDirectory}/query-logs.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${BaseLogDirectory}/query-logs.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}][%t][%level][%C:%L] %m%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="RollingFileFxckMqProvider" class="ch.qos.logback.core.rolling.RollingFileAppender">\
+        <file>${BaseLogDirectory}/mq-logs.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${BaseLogDirectory}/mq-logs.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}][%t][%level][%C:%L] %m%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+
+    <root level="info">
+        <appender-ref ref="console"/>
+        <appender-ref ref="log"/>
+    </root>
+
+    <logger name="query" additivity="false">
+        <appender-ref ref="query"/>
+    </logger>
+
+    <!--    <logger name="RocketmqClient" level="debug" additivity="false" >-->
+    <!--        <appender-ref ref="console"/>-->
+    <!--        <appender-ref ref="RollingFileFxckMqProvider"/>-->
+    <!--    </logger>-->
+
+</configuration>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.wan.owl.mapper.ProductMapper">
+    <resultMap id="BaseResultMap" type="cn.wan.owl.model.Product">
+        <id column="c_id" property="id" jdbcType="INTEGER"/>
+        <result column="c_kind" property="kind" jdbcType="VARCHAR"/>
+        <result column="c_code" property="code" jdbcType="VARCHAR"/>
+        <result column="c_name" property="name" jdbcType="VARCHAR"/>
+        <result column="c_poundage" property="poundage" jdbcType="DOUBLE"/>
+        <result column="c_remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="c_create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="c_update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="c_state" property="state" jdbcType="TINYINT"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        c_id, c_kind, c_code, c_name, c_poundage, c_remark, c_create_time, c_update_time,
+    c_state
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from t_product
+        where c_id = #{id,jdbcType=INTEGER}
+    </select>
+    <select id="listByKeyword" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_product
+        where c_state = 0
+        <if test="keyword != null and keyword != ''">
+            and (c_code like concat('%',#{keyword},'%') or c_name like concat('%',#{keyword},'%'))
+        </if>
+    </select>
+    <select id="listByIds" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_product
+        where c_state = 0
+        and c_id in
+        <foreach collection="idList" open="(" separator="," close=")" item="item">
+            #{item}
+        </foreach>
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        update t_product
+        set c_state = 100
+        where c_id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="cn.wan.owl.model.Product">
+        insert into t_product (c_id, c_kind, c_code,
+                               c_name, c_poundage, c_remark,
+                               c_create_time, c_update_time, c_state)
+        values (#{id,jdbcType=INTEGER}, #{kind,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR},
+                #{name,jdbcType=VARCHAR}, #{poundage,jdbcType=DOUBLE}, #{remark,jdbcType=VARCHAR},
+                #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{state,jdbcType=TINYINT})
+    </insert>
+    <insert id="insertSelective" parameterType="cn.wan.owl.model.Product">
+        insert into t_product
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                c_id,
+            </if>
+            <if test="kind != null">
+                c_kind,
+            </if>
+            <if test="code != null">
+                c_code,
+            </if>
+            <if test="name != null">
+                c_name,
+            </if>
+            <if test="poundage != null">
+                c_poundage,
+            </if>
+            <if test="remark != null">
+                c_remark,
+            </if>
+            <if test="createTime != null">
+                c_create_time,
+            </if>
+            <if test="updateTime != null">
+                c_update_time,
+            </if>
+            <if test="state != null">
+                c_state,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="kind != null">
+                #{kind,jdbcType=VARCHAR},
+            </if>
+            <if test="code != null">
+                #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="poundage != null">
+                #{poundage,jdbcType=DOUBLE},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="state != null">
+                #{state,jdbcType=TINYINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cn.wan.owl.model.Product">
+        update t_product
+        <set>
+            <if test="kind != null">
+                c_kind = #{kind,jdbcType=VARCHAR},
+            </if>
+            <if test="code != null">
+                c_code = #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                c_name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="poundage != null">
+                c_poundage = #{poundage,jdbcType=DOUBLE},
+            </if>
+            <if test="remark != null">
+                c_remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                c_create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                c_update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="state != null">
+                c_state = #{state,jdbcType=TINYINT},
+            </if>
+        </set>
+        where c_id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cn.wan.owl.model.Product">
+        update t_product
+        set c_kind        = #{kind,jdbcType=VARCHAR},
+            c_code        = #{code,jdbcType=VARCHAR},
+            c_name        = #{name,jdbcType=VARCHAR},
+            c_poundage    = #{poundage,jdbcType=DOUBLE},
+            c_remark      = #{remark,jdbcType=VARCHAR},
+            c_create_time = #{createTime,jdbcType=TIMESTAMP},
+            c_update_time = #{updateTime,jdbcType=TIMESTAMP},
+            c_state       = #{state,jdbcType=TINYINT}
+        where c_id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

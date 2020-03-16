@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.wan.owl.mapper.PurchaseMapper">
+    <resultMap id="BaseResultMap" type="cn.wan.owl.model.Purchase">
+        <id column="c_id" property="id" jdbcType="INTEGER"/>
+        <result column="c_product_id" property="productId" jdbcType="INTEGER"/>
+        <result column="c_user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="c_rental" property="rental" jdbcType="DOUBLE"/>
+        <result column="c_nav" property="nav" jdbcType="DOUBLE"/>
+        <result column="c_quantity" property="quantity" jdbcType="DOUBLE"/>
+        <result column="c_confirm_rental" property="confirmRental" jdbcType="DOUBLE"/>
+        <result column="c_poundage" property="poundage" jdbcType="DOUBLE"/>
+        <result column="c_buy_time" property="buyTime" jdbcType="TIMESTAMP"/>
+        <result column="c_confirm_time" property="confirmTime" jdbcType="TIMESTAMP"/>
+        <result column="c_flags" property="flags" jdbcType="VARCHAR"/>
+        <result column="c_create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="c_update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="c_state" property="state" jdbcType="TINYINT"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        c_id, c_product_id, c_user_id, c_rental, c_nav, c_quantity, c_confirm_rental, c_poundage, c_buy_time,
+    c_confirm_time, c_flags, c_create_time, c_update_time, c_state
+    </sql>
+    <select id="listByQueryDto" resultMap="BaseResultMap" parameterType="cn.wan.owl.dto.PurchaseQueryDto">
+        select
+        <include refid="Base_Column_List"/>
+        from t_purchase
+        where c_state = 0
+        <if test="userId != null and userId != ''">
+            and c_user_id = #{userId}
+        </if>
+        order by #{orderBy} #{orderType}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        update t_purchase
+        set c_state = 0
+        where c_id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insertSelective" parameterType="cn.wan.owl.model.Purchase">
+        insert into t_purchase
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="productId != null">
+                c_product_id,
+            </if>
+            <if test="userId != null">
+                c_user_id,
+            </if>
+            <if test="rental != null">
+                c_rental,
+            </if>
+            <if test="nav != null">
+                c_nav,
+            </if>
+            <if test="quantity != null">
+                c_quantity,
+            </if>
+            <if test="confirmRental != null">
+                c_confirm_rental,
+            </if>
+            <if test="poundage != null">
+                c_poundage,
+            </if>
+            <if test="buyTime != null">
+                c_buy_time,
+            </if>
+            <if test="confirmTime != null">
+                c_confirm_time,
+            </if>
+            <if test="flags != null">
+                c_flags,
+            </if>
+            <if test="createTime != null">
+                c_create_time,
+            </if>
+            <if test="updateTime != null">
+                c_update_time,
+            </if>
+            <if test="state != null">
+                c_state,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="productId != null">
+                #{productId,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="rental != null">
+                #{rental,jdbcType=DOUBLE},
+            </if>
+            <if test="nav != null">
+                #{nav,jdbcType=DOUBLE},
+            </if>
+            <if test="quantity != null">
+                #{quantity,jdbcType=DOUBLE},
+            </if>
+            <if test="confirmRental != null">
+                #{confirmRental,jdbcType=DOUBLE},
+            </if>
+            <if test="poundage != null">
+                #{poundage,jdbcType=DOUBLE},
+            </if>
+            <if test="buyTime != null">
+                #{buyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="confirmTime != null">
+                #{confirmTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="flags != null">
+                #{flags,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="state != null">
+                #{state,jdbcType=TINYINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cn.wan.owl.model.Purchase">
+        update t_purchase
+        <set>
+            <if test="productId != null">
+                c_product_id = #{productId,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                c_user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="rental != null">
+                c_rental = #{rental,jdbcType=DOUBLE},
+            </if>
+            <if test="nav != null">
+                c_nav = #{nav,jdbcType=DOUBLE},
+            </if>
+            <if test="quantity != null">
+                c_quantity = #{quantity,jdbcType=DOUBLE},
+            </if>
+            <if test="confirmRental != null">
+                c_confirm_rental = #{confirmRental,jdbcType=DOUBLE},
+            </if>
+            <if test="poundage != null">
+                c_poundage = #{poundage,jdbcType=DOUBLE},
+            </if>
+            <if test="buyTime != null">
+                c_buy_time = #{buyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="confirmTime != null">
+                c_confirm_time = #{confirmTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="flags != null">
+                c_flags = #{flags,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                c_create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                c_update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="state != null">
+                c_state = #{state,jdbcType=TINYINT},
+            </if>
+        </set>
+        where c_id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>
