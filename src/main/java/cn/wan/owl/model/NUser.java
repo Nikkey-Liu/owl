@@ -1,5 +1,8 @@
 package cn.wan.owl.model;
 
+import lombok.Data;
+
+@Data
 public class NUser {
     private Integer userid;
 
