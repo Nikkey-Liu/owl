@@ -25,7 +25,7 @@ public class PurchaseController {
     @GetMapping("/list/person")
     public Object list(String orderBy, String orderType) {
         return CommonResponse.success(
-                purchaseService.list(new PurchaseQueryDto(UserUtil.getCurrentUser().getId(), orderBy, orderType)));
+                purchaseService.list(new PurchaseQueryDto(UserUtil.getCurrentUser().getUserid(), orderBy, orderType)));
     }
 
     @PostMapping("/delete")

@@ -100,26 +100,6 @@
             page: true
         });
 
-        // 监听搜索操作
-        form.on('submit(data-search-btn)', function (data) {
-            var result = JSON.stringify(data.field);
-            layer.alert(result, {
-                title: '最终的搜索信息'
-            });
-
-            //执行搜索重载
-            table.reload('currentTableId', {
-                page: {
-                    curr: 1
-                }
-                , where: {
-                    searchParams: result
-                }
-            }, 'data');
-
-            return false;
-        });
-
         // 监听添加操作
         $(".data-add-btn").on("click", function () {
 
@@ -142,47 +122,15 @@
 
             return false;
         });
-
         // 监听删除操作
         $(".data-delete-btn").on("click", function () {
             var checkStatus = table.checkStatus('currentTableId')
                 , data = checkStatus.data;
             layer.alert(JSON.stringify(data));
         });
-
         //监听表格复选框选择
         table.on('checkbox(currentTableFilter)', function (obj) {
             console.log(obj)
         });
-
-        table.on('tool(currentTableFilter)', function (obj) {
-            var data = obj.data;
-            if (obj.event === 'edit') {
-
-                var content = layuimini.getHrefContent('page/table/add.html');
-                var openWH = layuimini.getOpenWidthHeight();
-
-                var index = layer.open({
-                    title: '编辑用户',
-                    type: 1,
-                    shade: 0.2,
-                    maxmin: true,
-                    shadeClose: true,
-                    area: [openWH[0] + 'px', openWH[1] + 'px'],
-                    offset: [openWH[2] + 'px', openWH[3] + 'px'],
-                    content: content,
-                });
-                $(window).on("resize", function () {
-                    layer.full(index);
-                });
-                return false;
-            } else if (obj.event === 'delete') {
-                layer.confirm('真的删除行么', function (index) {
-                    obj.del();
-                    layer.close(index);
-                });
-            }
-        });
-
     });
 </script>

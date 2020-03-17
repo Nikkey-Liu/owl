@@ -184,8 +184,16 @@
                 const code = data.code;
                 if (code === 0) {
                     layer.msg('登录成功', function () {
-                    if (l==1)
+                    if (l==1){
                         window.location= '/ui/index';
+                    }
+                    if(l==2){
+
+                    }
+                    if(l==3){
+                        window.location='/ui/indexstudent'
+                    }
+
                     });
                 } else {
                     layer.msg('登录失败', function () {

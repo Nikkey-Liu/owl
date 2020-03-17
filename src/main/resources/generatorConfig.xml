@@ -86,7 +86,7 @@
             <columnRenamingRule searchString="c_" replaceString=""/>
         </table>
        -->
-        <table schema="" tableName="user" domainObjectName="NUser"
+        <table schema="" tableName="product" domainObjectName="NProduct"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
