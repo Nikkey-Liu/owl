@@ -2,23 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1707c9dd-5273-4ee9-94bb-ca511d48951a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/wan/owl/dto/ProductDto/Memento.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/wan/owl/dto/ProductDto/OriginatorWidget.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/wan/owl/dto/ProductDto/ProductHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/wan/owl/dto/ProductDto/ProductOriginator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/wan/owl/dto/ProductDto/WidgetMemento.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/wan/owl/service/NProductService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/api/initStudent.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/page/indexstudent.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/page/ul-studentViewProduct.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/wan/owl/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/wan/owl/controller/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/wan/owl/controller/PurchaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/wan/owl/controller/PurchaseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/wan/owl/util/UserUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/wan/owl/util/UserUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/page/aui-investment.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/page/aui-investment.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/page/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/page/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/page/login-1.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/page/login-1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/db/Dump20200318.sql" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -48,13 +32,27 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/cn/wan/owl/service/NProductService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="124">
+            <state relative-caret-position="64">
               <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/wan/owl/controller/LoginController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="304">
+              <caret line="35" column="18" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/db/Dump20200318.sql">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -66,7 +64,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/page/ul-studentViewProduct.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="228">
@@ -277,6 +275,14 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="db" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="owl" type="b2602c69:ProjectViewProjectNode" />
+              <item name="owl" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="api" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -319,7 +325,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/static/api" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/db" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Artifacts" />
@@ -329,10 +335,10 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\liuxiaoda\workarea\owl\src\main\resources\db" />
       <recent name="G:\liuxiaoda\workarea\owl\src\main\resources\static\api" />
       <recent name="G:\liuxiaoda\workarea\owl\src\main\resources\static\page" />
       <recent name="G:\liuxiaoda\workarea\owl\src\main\java\cn\wan\owl\dto" />
-      <recent name="G:\liuxiaoda\workarea\owl\src\main\resources\db" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -378,7 +384,7 @@
       <workItem from="1584306358532" duration="8257000" />
       <workItem from="1584371152869" duration="11320000" />
       <workItem from="1584391642532" duration="18582000" />
-      <workItem from="1584451244300" duration="7793000" />
+      <workItem from="1584451244300" duration="8482000" />
     </task>
     <task id="LOCAL-00001" summary="step2">
       <created>1584388405100</created>
@@ -391,7 +397,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52695000" />
+    <option name="totallyTimeSpent" value="53384000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -465,43 +471,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/wan/owl/model/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="6" selection-start-line="6" selection-end-line="6" selection-end-column="5" />
-          <folding>
-            <element signature="e#239#240#0" expanded="true" />
-            <element signature="e#264#265#0" expanded="true" />
-            <element signature="e#301#302#0" expanded="true" />
-            <element signature="e#329#330#0" expanded="true" />
-            <element signature="e#363#364#0" expanded="true" />
-            <element signature="e#393#394#0" expanded="true" />
-            <element signature="e#439#440#0" expanded="true" />
-            <element signature="e#477#478#0" expanded="true" />
-            <element signature="e#512#513#0" expanded="true" />
-            <element signature="e#543#544#0" expanded="true" />
-            <element signature="e#591#592#0" expanded="true" />
-            <element signature="e#631#632#0" expanded="true" />
-            <element signature="e#666#667#0" expanded="true" />
-            <element signature="e#697#698#0" expanded="true" />
-            <element signature="e#745#746#0" expanded="true" />
-            <element signature="e#785#786#0" expanded="true" />
-            <element signature="e#818#819#0" expanded="true" />
-            <element signature="e#846#847#0" expanded="true" />
-            <element signature="e#889#890#0" expanded="true" />
-            <element signature="e#923#924#0" expanded="true" />
-            <element signature="e#958#959#0" expanded="true" />
-            <element signature="e#991#992#0" expanded="true" />
-            <element signature="e#1041#1042#0" expanded="true" />
-            <element signature="e#1085#1086#0" expanded="true" />
-            <element signature="e#1120#1121#0" expanded="true" />
-            <element signature="e#1153#1154#0" expanded="true" />
-            <element signature="e#1203#1204#0" expanded="true" />
-            <element signature="e#1247#1248#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-autoconfigure/2.1.0.RELEASE/spring-boot-autoconfigure-2.1.0.RELEASE.jar!/org/springframework/boot/autoconfigure/thymeleaf/ThymeleafAutoConfiguration.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3322">
@@ -805,23 +774,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/wan/owl/controller/LoginController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/wan/owl/service/NProductService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/page/login-1.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3337">
@@ -866,6 +818,26 @@
           <caret line="54" column="17" lean-forward="true" selection-start-line="54" selection-start-column="17" selection-end-line="54" selection-end-column="17" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/wan/owl/service/NProductService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/wan/owl/controller/LoginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="35" column="18" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/db/Dump20200318.sql">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
   <component name="masterDetails">
