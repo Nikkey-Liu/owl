@@ -1,6 +1,10 @@
 package cn.wan.owl.realm;
 
+import cn.wan.owl.mapper.UserMapper;
+import cn.wan.owl.model.NUser;
 import cn.wan.owl.model.User;
+import cn.wan.owl.service.NUserService;
+import cn.wan.owl.service.NUserServiceImpl;
 import cn.wan.owl.service.UserService;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -11,15 +15,12 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
-/**
- * @Author: wanhongji
- * @Date: 2020/2/8
- */
+
 //@Component
 public class CustomRealm extends AuthorizingRealm {
 
     @Autowired
-    private UserService userService;
+    private NUserService nuserServiceImpl;
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
@@ -29,9 +30,9 @@ public class CustomRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         //1.获取用户输入的账号
-        String account = (String) token.getPrincipal();
+        String username = (String) token.getPrincipal();
         //2.通过account从数据库中查找到user实体
-        User user = userService.queryByUserAccount(account);
+        NUser user = nuserServiceImpl.loginQueryUsername(username);
         if (user == null) {
             return null;
         }

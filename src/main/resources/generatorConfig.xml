@@ -7,7 +7,7 @@
 <generatorConfiguration>
     <!-- MBG代码生成器需要额外加载的依赖包-->
     <classPathEntry
-            location="/Applications/apache-maven-3.6.1/repository/mysql/mysql-connector-java/5.1.43/mysql-connector-java-5.1.43.jar"/>
+            location="D:\worksoftware\apache-maven-3.6.3\repository\mysql\mysql-connector-java\5.1.6\mysql-connector-java-5.1.6.jar"/>
 
     <context id="mysql">
 
@@ -29,7 +29,7 @@
 
         <jdbcConnection
                 driverClass="com.mysql.jdbc.Driver"
-                connectionURL="jdbc:mysql://localhost:3306/ulprojectstudent"
+                connectionURL="jdbc:mysql://localhost:3306/myowldatabase"
                 userId="root"
                 password="123456">
         </jdbcConnection>
@@ -66,7 +66,7 @@
         </javaClientGenerator>
 
 
-        <!--配置实体-->
+        <!--配置实体
         <table schema="" tableName="t_user" domainObjectName="User"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
@@ -85,7 +85,13 @@
                selectByExampleQueryId="false">
             <columnRenamingRule searchString="c_" replaceString=""/>
         </table>
-
+       -->
+        <table schema="" tableName="user" domainObjectName="NUser"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <columnRenamingRule searchString="c_" replaceString=""/>
+        </table>
         <!--mvn mybatis-generator:generate -e-->
     </context>
 </generatorConfiguration>

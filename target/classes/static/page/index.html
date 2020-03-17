@@ -29,14 +29,14 @@
         <div class="layui-logo">
         </div>
         <a>
-            <div class="layuimini-tool"><i title="Open list" class="fa fa-outdent" data-side-fold="1"></i></div>
+            <div class="layuimini-tool"><i title="展开" class="fa fa-outdent" data-side-fold="1"></i></div>
         </a>
 
         <ul class="layui-nav layui-layout-left layui-header-menu layui-header-pc-menu mobile layui-hide-xs">
         </ul>
         <ul class="layui-nav layui-layout-left layui-header-menu mobile layui-hide-sm">
             <li class="layui-nav-item">
-                <a href="javascript:;"><i class="fa fa-list-ul"></i> select module</a>
+                <a href="javascript:;"><i class="fa fa-list-ul"></i> select modle</a>
                 <dl class="layui-nav-child layui-header-mini-menu">
                 </dl>
             </li>
@@ -56,13 +56,13 @@
                 <a href="javascript:;">admin</a>
                 <dl class="layui-nav-child">
                     <dd>
-                        <a href="javascript:;" data-content-href="page/user-setting.html" data-title="基本资料" data-icon="fa fa-gears">profile</a>
+                        <a href="javascript:;" data-content-href="page/user-setting.html" data-title="基本资料" data-icon="fa fa-gears">基本资料</a>
                     </dd>
                     <dd>
-                        <a href="javascript:;" data-content-href="page/user-password.html" data-title="修改密码" data-icon="fa fa-gears">editPassword</a>
+                        <a href="javascript:;" data-content-href="page/user-password.html" data-title="修改密码" data-icon="fa fa-gears">修改密码</a>
                     </dd>
                     <dd>
-                        <a href="javascript:;" class="login-out">login out</a>
+                        <a href="javascript:;" class="login-out">退出登录</a>
                     </dd>
                 </dl>
             </li>
@@ -80,7 +80,7 @@
     <div class="layui-body">
         <div class="layui-card layuimini-page-header layui-hide-xs layui-hide">
             <div class="layui-breadcrumb" id="layuimini-page-header">
-                <a><cite>menu management</cite></a>
+                <a><cite>菜单管理</cite></a>
             </div>
         </div>
         <div class="layuimini-content-page">
@@ -89,6 +89,17 @@
 
 </div>
 
+<!--百度统计代码-开始 正式使用请删除-->
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?d97abf6d61c21d773f97835defbdef4e";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+<!--百度统计代码-结束-->
 
 <script th:src="@{/static/lib/layui-v2.5.5/layui.js?v=1.0.4}" charset="utf-8"></script>
 <script th:src="@{/static/js/lay-config.js?v=1.0.4}" charset="utf-8"></script>
@@ -102,7 +113,7 @@
         layuimini.init('/static/api/init.json');
 
         $('.login-out').on("click", function () {
-            layer.msg('退出登录成功 out login success', function () {
+            layer.msg('退出登录成功', function () {
                 window.location = 'login-1.html';
             });
         });

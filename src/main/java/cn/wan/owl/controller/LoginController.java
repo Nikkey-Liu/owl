@@ -2,7 +2,9 @@ package cn.wan.owl.controller;
 
 import cn.wan.owl.dto.UserLoginDto;
 import cn.wan.owl.model.CommonResponse;
+import cn.wan.owl.model.NUser;
 import cn.wan.owl.model.User;
+import cn.wan.owl.service.NUserService;
 import cn.wan.owl.service.UserService;
 import com.alibaba.fastjson.JSON;
 import org.apache.shiro.SecurityUtils;
@@ -10,8 +12,9 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-
+import java.util.Map;
+import javax.servlet.http.HttpSession;
+import org.springframework.util.StringUtils;
 @Controller
 @RequestMapping("/login")
 public class LoginController {
@@ -20,7 +23,8 @@ public class LoginController {
     public String ui() {
         return "login-1";
     }
-
+    @Autowired
+    NUserService nUserServiceimpl;
     @PostMapping("/in")
     @ResponseBody
     public Object login(@RequestBody UserLoginDto loginDto) {

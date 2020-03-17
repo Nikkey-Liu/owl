@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class DataSourceConfig {
 
-    private String url = "jdbc:mysql://localhost:3306/ulprojectstudent";
+    private String url = "jdbc:mysql://localhost:3306/myowldatabase";
 
     private String username = "root";
 
