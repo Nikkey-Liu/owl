@@ -1,0 +1,117 @@
+<div class="layuimini-container layui-anim layui-anim-upbit">
+    <div class="layuimini-main">
+<div class="layui-form" >
+
+    <input type="hidden" id ="productid"  name="productid">
+
+    <div class="layui-form-item">
+
+        <label class="layui-form-label">Product Name</label>
+
+        <div class="layui-input-inline">
+
+            <input type="text" id="productname" name="productname" class="layui-input" placeholder="Please input Product Name" >
+
+        </div>
+
+    </div>
+
+    <div class="layui-form-item">
+
+        <label class="layui-form-label">Product Description</label>
+
+        <div class="layui-input-inline">
+
+            <input type="text"  id="productdescription" name="productdescription" class="layui-input" placeholder="product description" >
+
+        </div>
+
+    </div>
+    <div class="layui-form-item">
+
+        <label class="layui-form-label">Product quantity</label>
+
+        <div class="layui-input-inline">
+
+            <input type="text" id="quantity" name="quantity" class="layui-input" placeholder="quantity"   >
+
+        </div>
+
+    </div>
+    <div class="layui-form-item">
+
+        <label class="layui-form-label">Product price</label>
+
+        <div class="layui-input-inline">
+
+            <input type="text"id="price" name="price" class="layui-input" placeholder="price"  >
+
+        </div>
+
+    </div>
+    <div class="layui-form-item">
+
+        <label class="layui-form-label">Product productstate</label>
+
+        <div class="layui-input-inline">
+
+            <input type="text"id="productstate" name="productstate" class="layui-input" placeholder="productstate">
+
+        </div>
+
+    </div>
+
+        <div class="layui-form-item">
+            <button class="layui-btn layui-btn-fluid" onclick="submite()">submit</button>
+        </div>
+
+
+</div>
+</div>
+</div>
+<script>
+    function submite() {
+        var productid = $("#productid").val();
+        var productname = $("#productname").val();
+        var productdescription = $("#productdescription").val();
+        var price = $("#price").val();
+        var userid = $("#userid").val();
+        var productstate= $("#productstate").val();
+        console.log("productname = " + productname + " productdescription = " + productdescription)
+        const req = {
+            productid: productid,
+            productname: productname,
+            productdescription: productdescription,
+            price: price,
+            userid: userid,
+            productstate: productstate
+        };
+        $.ajax({
+                url: "/product/add",
+                type: 'POST',
+                data: JSON.stringify(req),
+                dataType: 'json',
+                contentType: 'application/json',
+                success: function (data, status, xhr) {
+                    var str=100+11;
+                    window.alert(str);
+                    console.log("res = " + JSON.stringify(data))
+                    const code = data.code;
+                    if (code === 0) {
+                        layer.msg('success add', function () {
+
+                        });
+                    } else {
+                        layer.msg('faile add', function () {
+
+                        });
+                    }
+                },
+                Error: function (xhr, error, exception) {
+                    alert(exception.toString());
+                }
+            });
+
+    }
+    </script>
+

@@ -19,6 +19,12 @@
     from product
     where productId = #{productid,jdbcType=INTEGER}
   </select>
+  <select id="selectProductByMaxId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from product
+    WHERE product.productId =(SELECT MAX(productId) FROM product)
+  </select>
   <select id="selectProductByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select
     <include refid="Base_Column_List" />

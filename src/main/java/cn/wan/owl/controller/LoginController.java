@@ -18,13 +18,13 @@ import org.springframework.util.StringUtils;
 @Controller
 @RequestMapping("/login")
 public class LoginController {
-
+    @Autowired
+    NUserService nUserServiceimpl;
     @GetMapping("/ui")
     public String ui() {
         return "login-1";
     }
-    @Autowired
-    NUserService nUserServiceimpl;
+
     @PostMapping("/in")
     @ResponseBody
     public Object login(@RequestBody UserLoginDto loginDto) {

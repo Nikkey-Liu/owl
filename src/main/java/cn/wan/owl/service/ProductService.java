@@ -1,6 +1,7 @@
 package cn.wan.owl.service;
 
-import cn.wan.owl.dto.ProductCreateDto;
+
+import cn.wan.owl.dto.NProductCreateDto;
 import cn.wan.owl.mapper.ProductMapper;
 import cn.wan.owl.model.Product;
 import lombok.extern.slf4j.Slf4j;
@@ -42,7 +43,7 @@ public class ProductService {
         productMapper.deleteByPrimaryKey(id);
     }
 
-    public void add(ProductCreateDto dto) {
-        insert(dto.toPo());
+    public void add(NProductCreateDto dto) {
+//        insert(dto.toPo());
     }
 }

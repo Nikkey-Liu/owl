@@ -20,7 +20,9 @@ public class NProductService {
     {
       return   nProductMapper.insertSelective(nProduct);
     }
-
+    public NProduct selectProductByMaxId(){
+        return nProductMapper.selectProductByMaxId();
+    }
     public int removeProductByid(int productid)
     {
         return nProductMapper.deleteByPrimaryKey(productid);

@@ -12,7 +12,7 @@ public interface NProductMapper {
     int insertSelective(NProduct record);
     List<NProduct> selectProductByUserId(Integer userid);
     NProduct selectByPrimaryKey(Integer productid);
-
+    NProduct  selectProductByMaxId();
     int updateByPrimaryKeySelective(NProduct record);
 
     int updateByPrimaryKey(NProduct record);

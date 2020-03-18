@@ -4,7 +4,8 @@
 
         <script type="text/html" id="toolbarDemo">
             <div class="layui-btn-container">
-                <button class="layui-btn layui-btn-sm data-add-btn"> Add product</button>
+                <a href="javascript:;" class="layui-btn layui-btn-sm data-add-btn" data-type="tabAdd" data-mpi="m-p-i-9" data-one-page="/ui/ul-product-Add" target="_self"><span class="layui-left-nav"> Add product</span></a>
+
                 <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn"> Undo</button>
             </div>
         </script>
@@ -38,7 +39,7 @@
             },
             toolbar: '#toolbarDemo',
             defaultToolbar: ['filter', 'exports', 'print', {
-                title: '提示',
+                title: 'inform',
                 layEvent: 'LAYTABLE_TIPS',
                 icon: 'layui-icon-tips'
             }],
@@ -60,33 +61,49 @@
         });
 
         // 监听添加操作
-        $(".data-add-btn").on("click", function () {
 
-            var content = layuimini.getHrefContent('/ui/aui-investment-add');
-            var openWH = layuimini.getOpenWidthHeight();
-
-            var index = layer.open({
-                title: '又买了一只',
-                type: 1,
-                shade: 0.2,
-                maxmin: true,
-                shadeClose: true,
-                area: [openWH[0] + 'px', openWH[1] + 'px'],
-                offset: [openWH[2] + 'px', openWH[3] + 'px'],
-                content: content,
-            });
-            $(window).on("resize", function () {
-                layer.full(index);
-            });
-
-            return false;
-        });
 
         // 监听删除操作
         $(".data-delete-btn").on("click", function () {
-            var checkStatus = table.checkStatus('currentTableId')
-                , data = checkStatus.data;
-            layer.alert(JSON.stringify(data));
+            const req = {
+            };
+            $.ajax({
+                url: "/product/undo",
+                type: 'POST',
+                data: JSON.stringify(req),
+                dataType: 'json',
+                contentType: 'application/json',
+                success: function (data, status, xhr) {
+                    console.log("res = " + JSON.stringify(data))
+                    const code = data.code;
+                    if (code === 0) {
+                        layer.msg('success undo', function () {
+
+                            table.reload('currentTableId',{//重载表格
+                                page:{
+                                    curr:1
+                                }
+                            })
+                            time: 2000
+                        });
+
+                    } else {
+                        layer.msg('failed undo -----empty ', function () {
+                            table.reload('currentTableId',{//重载表格
+                                page:{
+                                    curr:1
+                                }
+                            })
+                            time: 2000
+                        });
+
+
+                    }
+                },
+                Error: function (xhr, error, exception) {
+                    alert(exception.toString());
+                }
+            });
         });
 
         //监听表格复选框选择
@@ -98,11 +115,11 @@
             var data = obj.data;
             if (obj.event === 'edit') {
 
-                var content = layuimini.getHrefContent('page/table/add.html');
+                var content = layuimini.getHrefContent('/ui/ul-product-Add');
                 var openWH = layuimini.getOpenWidthHeight();
 
                 var index = layer.open({
-                    title: '编辑用户',
+                    title: 'edit product',
                     type: 1,
                     shade: 0.2,
                     maxmin: true,
@@ -116,7 +133,7 @@
                 });
                 return false;
             } else if (obj.event === 'delete') {
-                layer.confirm('真的删除行么', function (index) {
+                layer.confirm('delete', function (index) {
                     obj.del();
                     layer.close(index);
                 });
