@@ -19,13 +19,11 @@ public class LoginHandlerInterceptor implements HandlerInterceptor {
         if(user == null){
             //未登陆，返回登陆页面
             System.out.println("login failed-------------------");
-
             request.getRequestDispatcher("/login/ui").forward(request,response);
             return false;
         }else{
             //已登陆，放行请求
             System.out.println("login success-------------------");
-
             return true;
         }
 
