@@ -52,8 +52,7 @@
                     {field: 'quantity', width: 100, title: 'quantity'},
                     {field: 'price', width: 110, title: 'price', sort: true},
                     {field: 'userid', width: 100, title: 'MyId'},
-                    {field: 'productstate', title: 'productstate', width: 80},
-                    {title: 'action', minWidth: 50, templet: '#currentTableBar', fixed: "right", align: "center"}
+                    {field: 'productstate', title: 'productstate', width: 80}
                 ]
             ],
             limits: [10, 15, 20, 25, 50, 100],
@@ -117,7 +116,7 @@
             if (obj.event === 'edit') {
 
                 var content = layuimini.getHrefContent('/ui/ul-product-Add');
-                 var openWH = layuimini.getOpenWidthHeight();
+                var openWH = layuimini.getOpenWidthHeight();
 
                 var index = layer.open({
                     title: 'edit product',

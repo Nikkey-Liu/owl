@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>login</title>
@@ -153,6 +153,7 @@
                 <div class="layui-form-item">
                     <button class="layui-btn layui-btn-fluid" onclick="login()">login in</button>
                 </div>
+                <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
             </div>
         </div>
         </div>

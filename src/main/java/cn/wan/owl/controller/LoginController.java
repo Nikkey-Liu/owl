@@ -6,6 +6,7 @@ import cn.wan.owl.model.NUser;
 import cn.wan.owl.model.User;
 import cn.wan.owl.service.NUserService;
 import cn.wan.owl.service.UserService;
+import cn.wan.owl.util.UserUtil;
 import com.alibaba.fastjson.JSON;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
@@ -27,12 +28,15 @@ public class LoginController {
 
     @PostMapping("/in")
     @ResponseBody
-    public Object login(@RequestBody UserLoginDto loginDto) {
+    public Object login(@RequestBody UserLoginDto loginDto ,HttpSession session) {
         Subject subject = SecurityUtils.getSubject();
         try {
             subject.login(loginDto.getUserPasswordToken());
+           session.setAttribute("loginUser", UserUtil.getCurrentUser());
+         System.out.println("00000000000000000000000000+success");
             return CommonResponse.success();
         } catch (Exception e) {
+            System.out.println("00000000000000000000000000");
             return CommonResponse.failed();
         }
     }
