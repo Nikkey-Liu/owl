@@ -2,6 +2,7 @@ package cn.wan.owl.dto;
 
 import cn.wan.owl.model.NProduct;
 import cn.wan.owl.model.Product;
+import cn.wan.owl.util.Constantvalue;
 import cn.wan.owl.util.UserUtil;
 import lombok.Data;
 
@@ -23,10 +24,11 @@ public class NProductCreateDto {
 
     private Integer userid;
 
-    private String productstate;
+//    private String productstate;
+
 
     public NProduct toPo() {
-        return new NProduct( productid , productname, productdescription, quantity, price, UserUtil.getCurrentUser().getUserid(), productstate
+        return new NProduct( productid , productname, productdescription, quantity, price, UserUtil.getCurrentUser().getUserid(), Constantvalue.UNAPPROVE
         );
     }
 }

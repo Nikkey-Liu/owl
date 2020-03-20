@@ -49,17 +49,17 @@
         </div>
 
     </div>
-    <div class="layui-form-item">
+<!--    <div class="layui-form-item">-->
 
-        <label class="layui-form-label">Product productstate</label>
+<!--        <label class="layui-form-label">Product productstate</label>-->
 
-        <div class="layui-input-inline">
+<!--        <div class="layui-input-inline">-->
 
-            <input type="text"id="productstate" name="productstate" class="layui-input" placeholder="productstate">
+<!--            <input type="text"id="productstate" name="productstate" class="layui-input" placeholder="productstate">-->
 
-        </div>
+<!--        </div>-->
 
-    </div>
+<!--    </div>-->
 
         <div class="layui-form-item">
             <button class="layui-btn layui-btn-fluid" onclick="submite()">submit</button>
@@ -76,7 +76,8 @@
         var productdescription = $("#productdescription").val();
         var price = $("#price").val();
         var userid = $("#userid").val();
-        var productstate= $("#productstate").val();
+        var quantity=$("#quantity").val();
+        // var productstate= $("#productstate").val();
         console.log("productname = " + productname + " productdescription = " + productdescription)
         const req = {
             productid: productid,
@@ -84,7 +85,8 @@
             productdescription: productdescription,
             price: price,
             userid: userid,
-            productstate: productstate
+            quantity: quantity
+            // productstate: productstate
         };
         $.ajax({
                 url: "/product/add",

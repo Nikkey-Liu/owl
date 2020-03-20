@@ -13,7 +13,7 @@
         <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
 
         <script type="text/html" id="currentTableBar">
-            <a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit">Edit</a>
+<!--            <a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit">Edit</a>-->
             <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">Delete</a>
         </script>
 
@@ -112,7 +112,7 @@
             console.log(obj)
         });
 
-        table.on('tool(currentTableFilter)', function (obj) {
+        table.on('tool(currentTableFilter)', function ( obj) {
             var data = obj.data;
             if (obj.event === 'edit') {
 
@@ -134,9 +134,47 @@
                 });
                 return false;
             } else if (obj.event === 'delete') {
+                const req = {
+                    id :data.productid
+                };
                 layer.confirm('delete', function (index) {
-                    obj.del();
-                    layer.close(index);
+                    $.ajax({
+                        url: "/product/delete",
+                        type: 'POST',
+                        data: JSON.stringify(req),
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        success: function (data, status, xhr) {
+                            console.log("res = " + JSON.stringify(data))
+                            const code = data.code;
+                            if (code === 0) {
+                                layer.msg('success delete a message from table', function () {
+
+                                    table.reload('currentTableId',{//重载表格
+                                        page:{
+                                            curr:1
+                                        }
+                                    })
+                                    time: 2000
+                                });
+
+                            } else {
+                                layer.msg('delete failed for some reasons ', function () {
+                                    table.reload('currentTableId',{//重载表格
+                                        page:{
+                                            curr:1
+                                        }
+                                    })
+                                    time: 2000
+                                });
+
+
+                            }
+                        },
+                        Error: function (xhr, error, exception) {
+                            alert(exception.toString());
+                        }
+                    });
                 });
             }
         });

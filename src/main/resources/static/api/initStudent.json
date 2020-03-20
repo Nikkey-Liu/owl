@@ -5,11 +5,11 @@
   "homeInfo": {
     "title": "Home",
     "icon": "fa fa-home",
-    "href": "/ui/ul-studentViewProduct"
+    "href": "/ui/ul-myprofile"
   },
   "logoInfo": {
     "title": "LayuiMini-LOGO",
-    "image": "images/logo.png",
+    "image": "/static/images/logo.png",
     "href": ""
   },
   "menuInfo": {
@@ -24,8 +24,8 @@
           "target": "_self",
           "child": [
             {
-              "title": "welcome-1",
-              "href": "page/welcome-1.html",
+              "title": "onsaleProduct",
+              "href": "/ui/ul-studentlistallProduct",
               "icon": "fa fa-tachometer",
               "target": "_self"
             },
@@ -83,7 +83,7 @@
         },
         {
           "title": "MyProduct",
-          "href": "/ui/ul-myprofile",
+          "href": "/ui/ul-studentViewProduct",
           "icon": "fa fa-file-text",
           "target": "_self"
         }

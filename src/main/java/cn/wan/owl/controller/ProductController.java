@@ -1,5 +1,6 @@
 package cn.wan.owl.controller;
 
+import cn.wan.owl.dto.IdDto;
 import cn.wan.owl.dto.NProductCreateDto;
 
 import cn.wan.owl.dto.ProductDto.OriginatorWidget;
@@ -8,6 +9,7 @@ import cn.wan.owl.dto.PurchaseQueryDto;
 import cn.wan.owl.model.CommonResponse;
 import cn.wan.owl.service.NProductService;
 import cn.wan.owl.service.ProductService;
+import cn.wan.owl.util.Constantvalue;
 import cn.wan.owl.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -55,8 +57,12 @@ public class ProductController {
 
     }
     @PostMapping("/delete")
-    public Object delete(@RequestParam() int id) {
-        productService.delete(id);
+    public Object delete(@RequestBody IdDto id) {
+        nProductService.removeProductByid(id.getid());
         return CommonResponse.success();
+    }
+    @GetMapping("/list/Allproduct")
+    public Object Allproduct(String orderBy, String orderType) {
+        return CommonResponse.success(nProductService.viewOnsaleProductByProductState(Constantvalue.ONSALE));
     }
 }

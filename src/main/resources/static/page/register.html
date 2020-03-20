@@ -126,12 +126,24 @@
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-icon layui-icon-username" for="username"></label>
-                    <input id="username" name="username" type="text" placeholder="email" autocomplete="off" class="layui-input">
+                    <input id="username" name="username" type="text" placeholder="username" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-icon layui-icon-password" for="password"></label>
                     <input id="password" name="password" type="password" placeholder="password" autocomplete="off" class="layui-input">
                 </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-icon layui-icon-password" for="tel"></label>
+                    <input id="tel" name="password" type="text" placeholder="TelephoneNumber: 1783645912" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-icon layui-icon-password" for="address"></label>
+                    <input id="address" name="password" type="text" placeholder="Address :plassey village, city, country" autocomplete="off" class="layui-input">
+                </div>
+
+
+
                 <!--                <div class="layui-form-item">-->
                 <!--                    <label class="layui-icon layui-icon-vercode" for="captcha"></label>-->
                 <!--                    <input type="text" name="captcha" lay-verify="required|captcha" placeholder="图形验证码" autocomplete="off"-->
@@ -151,12 +163,12 @@
                     </select>
                 </div>
                 <div class="layui-form-item">
-                    <button class="layui-btn layui-btn-fluid" onclick="login()">login in</button>
+                    <button class="layui-btn layui-btn-fluid" onclick="registe()">submit</button>
                 </div>
                 <div class="layui-form-item">
-                <a href="/register/ui" class="layui-btn layui-btn-fluid">Register</a>
+                    <a href="/login/ui" class="layui-btn layui-btn-fluid">Go login</a>
                 </div>
-                    <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+                <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
             </div>
         </div>
         </div>
@@ -167,18 +179,34 @@
 <script th:src="@{/static/lib/jq-module/jquery.particleground.min.js}" charset="utf-8"></script>
 <script>
 
-    function login() {
+    function registe() {
         const u = $("#username").val();
         const p = $("#password").val();
-        const l= $("#userlevel").val();
-        console.log("username = " + u + " password = " + p)
+        const l = $("#userlevel").val();
+        const t = $("#tel").val();
+        const a = $("#address").val();
+        var  usertype="";
+        console.log("username = " + u + " password = " + p+" userlevel"+l+"tel"+ t)
+        if(l==1)
+        {
+            usertype="Manager";
+        }
+        else if (l==2){
+            usertype="Teacher";
+        }
+        else {
+            usertype="Student";
+        }
         const req = {
             username: u,
             password: p,
-            userlevle: l
+            userlevel: l,
+            usertype: usertype,
+            tel: t,
+            address: a
         };
         $.ajax({
-            url: "/login/in",
+            url: "/register/in",
             type: 'POST',
             data: JSON.stringify(req),
             dataType: 'json',
@@ -188,20 +216,14 @@
                 const code = data.code;
                 if (code === 0) {
                     layer.msg('登录成功', function () {
-                    if (l==1){
-                        window.location= '/ui/index';
-                    }
-                    if(l==2){
 
-                    }
-                    if(l==3){
-                        window.location='/ui/indexstudent'
-                    }
+                        window.location= '/login/ui';
+
 
                     });
                 } else {
                     layer.msg('登录失败', function () {
-                        window.location = '/login/ui';
+                        window.location = '/register/ui';
                     });
                 }
             },

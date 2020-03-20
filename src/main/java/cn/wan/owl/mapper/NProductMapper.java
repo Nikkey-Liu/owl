@@ -14,6 +14,6 @@ public interface NProductMapper {
     NProduct selectByPrimaryKey(Integer productid);
     NProduct  selectProductByMaxId();
     int updateByPrimaryKeySelective(NProduct record);
-
+    List<NProduct> selectAllProductOnsale(String productstate);
     int updateByPrimaryKey(NProduct record);
 }

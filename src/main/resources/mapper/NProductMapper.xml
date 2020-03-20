@@ -31,6 +31,11 @@
     from product
     where userID = #{userid,jdbcType=INTEGER}
   </select>
+  <select id="selectAllProductOnsale" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from product where productstate=#{productstate,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from product
     where productId = #{productid,jdbcType=INTEGER}

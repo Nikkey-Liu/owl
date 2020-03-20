@@ -153,7 +153,10 @@
                 <div class="layui-form-item">
                     <button class="layui-btn layui-btn-fluid" onclick="login()">login in</button>
                 </div>
-                <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+                <div class="layui-form-item">
+                <a href="/register/ui" class="layui-btn layui-btn-fluid">Register</a>
+                </div>
+                    <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
             </div>
         </div>
         </div>
