@@ -2,12 +2,12 @@ package cn.wan.owl.dto.pdf;
 
 import com.itextpdf.text.pdf.PdfPTable;
 
-public class PDFTable {
+public class MyPDFTable {
     PdfPTable pTable;
     int columns;
     int rows;
 
-    public PDFTable(int columns, int rows) {
+    public MyPDFTable(int columns, int rows) {
         this.columns = columns;
         this.rows = rows;
         this.pTable = new PdfPTable(columns);

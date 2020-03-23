@@ -1,9 +1,9 @@
 package cn.wan.owl.dto.pdf;
 
 public class ReportCreator  extends AbstractReportCreator {
-    private static ReportCreator instance;
+    public static ReportCreator instance;
 
-    private ReportCreator()
+    public ReportCreator()
     {
 
     }
@@ -18,7 +18,7 @@ public class ReportCreator  extends AbstractReportCreator {
     }
 
     @Override
-    public IReport reportCreator( String type ) throws ReportTypeIsNotImplemented
+    public IReport reportCreator( String type )
     {
         IReport report = null; // which ever class implementing IReport can return a concrete product
         if(type.equals( "PDF" ))
@@ -29,10 +29,7 @@ public class ReportCreator  extends AbstractReportCreator {
         {
             report = new ExcelReport();// excel
         }
-        else
-        {
-            throw new ReportTypeIsNotImplemented();
-        }
+
         return report;
     }
 }

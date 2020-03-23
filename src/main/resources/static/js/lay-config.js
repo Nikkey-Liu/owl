@@ -10,7 +10,7 @@ window.rootPath = (function (src) {
 })();
 
 layui.config({
-    base: rootPath + "lay-module/",
+    base:  "/static/js/lay-module/",
     version: true
 }).extend({
     layuimini: "layuimini/layuimini", // layuimini扩展

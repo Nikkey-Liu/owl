@@ -1,14 +1,16 @@
 package cn.wan.owl.dto.pdf;
 
 import cn.wan.owl.model.NProduct;
-import cn.wan.owl.model.Product;
+import com.itextpdf.text.pdf.PdfPTable;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
 
 public class ReportService {private static ReportService reportService;
-    private static AbstractReportCreator reportCreator;
+    private static AbstractReportCreator reportCreator =new ReportCreator();
 
     private ReportService()
     {
@@ -42,21 +44,26 @@ public class ReportService {private static ReportService reportService;
 //		report.generateReport( builder, response );
     }
 
-    public String printDocument(IReportStructure contract, String docType, HttpServletResponse response) throws IOException
+    public ByteArrayInputStream printDocument(String docType, NProduct nProduct )
     {
-        PDFTable table = new PDFTable(1, 5);
+        ReportCreator reportCreator =new ReportCreator();
+        MyPDFTable table = new MyPDFTable(1, 5);
         IReport report;
-        String message = "";
-        try
-        {
+
+
+            System.out.println("report creator processing");
             report = reportCreator.reportCreator( docType );
-            report.generateReport(PDFBuilder.getCompleteTable(contract, table), response);
-        }
-        catch ( ReportTypeIsNotImplemented e )
+            System.out.println("report creator finish on processing with PDF");
+        PdfPTable o =PDFBuilder.getCompleteTable(table,nProduct);
+        if (o==null)
         {
-            message = e.getMessage();
+            System.out.println("-=======================");
         }
-        return message;
+            System.out.println("getCompleteTable ");
+
+
+
+        return new ByteArrayInputStream(report.generateReport(o).toByteArray());
     }
 
 }

@@ -1,0 +1,178 @@
+<div class="layuimini-container layui-anim layui-anim-upbit">
+    <div class="layuimini-main">
+        <legend>Welcome to UL Student Market : Product</legend>
+
+        <script type="text/html" id="toolbarDemo">
+            <div class="layui-btn-container">
+                <a href="javascript:;" class="layui-btn layui-btn-sm data-add-btn" data-type="tabAdd" data-mpi="m-p-i-9" data-one-page="/ui/ul-product-Add" target="_self"><span class="layui-left-nav"> Add product</span></a>
+
+                <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn"> Undo</button>
+            </div>
+        </script>
+
+        <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
+
+        <script type="text/html" id="currentTableBar">
+<!--            <a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit">Edit</a>-->
+            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">Approve</a>
+        </script>
+
+    </div>
+</div>
+<script>
+    layui.use(['form', 'table', 'layuimini', 'element'], function () {
+        var $ = layui.jquery,
+            form = layui.form,
+            table = layui.table,
+            layuimini = layui.layuimini;
+
+        table.render({
+            elem: '#currentTableId',
+            url: '/product/list/TeaApProduct',
+            parseData: function (res) { //res 即为原始返回的数据
+                return {
+                    "code": res.code, //解析接口状态
+                    "msg": res.msg, //解析提示文本
+                    "count": 10000, //解析数据长度
+                    "data": res.data //解析数据列表
+                };
+            },
+            toolbar: '#toolbarDemo',
+            defaultToolbar: ['filter', 'exports', 'print', {
+                title: 'inform',
+                layEvent: 'LAYTABLE_TIPS',
+                icon: 'layui-icon-tips'
+            }],
+            cols: [
+                [
+                    {type: "checkbox", width: 50, fixed: "left"},
+                    {field: 'productid', width: 150, title: 'productId', sort: true},
+                    {field: 'productname', width: 150, title: 'productname', sort: true},
+                    {field: 'productdescription', width: 110, title: 'productdescription', sort: true},
+                    {field: 'quantity', width: 100, title: 'quantity'},
+                    {field: 'price', width: 110, title: 'price', sort: true},
+                    {field: 'userid', width: 100, title: 'MyId'},
+                    {field: 'productstate', title: 'productstate', width: 80},
+                    {title: 'action', minWidth: 50, templet: '#currentTableBar', fixed: "right", align: "center"}
+                ]
+            ],
+            limits: [10, 15, 20, 25, 50, 100],
+            limit: 100,
+            page: true
+        });
+
+        // 监听添加操作
+
+
+        // 监听删除操作
+        $(".data-delete-btn").on("click", function () {
+            const req = {
+            };
+            $.ajax({
+                url: "/product/undo",
+                type: 'POST',
+                data: JSON.stringify(req),
+                dataType: 'json',
+                contentType: 'application/json',
+                success: function (data, status, xhr) {
+                    console.log("res = " + JSON.stringify(data))
+                    const code = data.code;
+                    if (code === 0) {
+                        layer.msg('success undo', function () {
+
+                            table.reload('currentTableId',{//重载表格
+                                page:{
+                                    curr:1
+                                }
+                            })
+                            time: 2000
+                        });
+
+                    } else {
+                        layer.msg('failed undo -----empty ', function () {
+                            table.reload('currentTableId',{//重载表格
+                                page:{
+                                    curr:1
+                                }
+                            })
+                            time: 2000
+                        });
+
+
+                    }
+                },
+                Error: function (xhr, error, exception) {
+                    alert(exception.toString());
+                }
+            });
+        });
+
+        //监听表格复选框选择
+        table.on('checkbox(currentTableFilter)', function (obj) {
+            console.log(obj)
+        });
+
+        table.on('tool(currentTableFilter)', function ( obj) {
+            var data = obj.data;
+            if (obj.event === 'edit') {
+
+                var content = layuimini.getHrefContent('/ui/ul-product-Add');
+                 var openWH = layuimini.getOpenWidthHeight();
+
+                var index = layer.open({
+                    title: 'edit product',
+                    type: 1,
+                    shade: 0.2,
+                    maxmin: true,
+                    shadeClose: true,
+                    area: [openWH[0] + 'px', openWH[1] + 'px'],
+                    offset: [openWH[2] + 'px', openWH[3] + 'px'],
+                    content: content,
+                });
+                $(window).on("resize", function () {
+                    layer.full(index);
+                });
+                return false;
+            } else if (obj.event === 'delete') {
+                var req = {
+                    id :data.productid
+                };
+                layer.confirm('approve', function (index) {
+                    $.ajax({
+                        url: "/product/approve",
+                        type: 'GET',
+                        data:req ,
+                        datat:'blob',
+                        contentType:'application/pdf',
+                        success: function (response) {
+                            alert('get response');
+                            var a = document.createElement('a');
+                            var pdfAsDataUri = "data:application/pdf," + response;
+                            a.download = 'export.pdf';
+                            a.type = 'application/pdf';
+                            a.href = pdfAsDataUri;
+                            a.click();
+                            // let blob = new Blob([response], {type: 'blob'});
+                            // let link = document.createElement('a');
+                            // let objectURL = window.URL.createObjectURL(blob);
+                            // link.href = objectURL;
+                            // link.target = '_self';
+                            // link.download = "report.pdf";
+                            // (document.body || document.documentElement).appendChild(link);
+                            // link.click();
+                            // setTimeout(()=>{
+                            //     window.URL.revokeObjectURL(objectURL);
+                            //     link.remove();
+                            // }, 100);
+                        },
+                        Error: function (xhr, error, exception) {
+                            alert(exception.toString());
+                        }
+                    });
+                });
+            }
+        });
+
+    });
+
+</script>

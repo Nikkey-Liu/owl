@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <title>LayuiMini(onepage) - 基于Layui的后台管理系统前端模板</title>
@@ -100,9 +100,8 @@
     })();
 </script>
 <!--百度统计代码-结束-->
-
-<script src="../lib/layui-v2.5.5/layui.js?v=1.0.4" charset="utf-8"></script>
-<script src="../js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+<script th:src="@{/static/lib/layui-v2.5.5/layui.js}" charset="utf-8"></script>
+<script th:src="@{/static/js/lay-config.js}" charset="utf-8"></script>
 <script>
     layui.use(['element', 'layer', 'layuimini'], function () {
         var $ = layui.jquery,

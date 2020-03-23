@@ -1,9 +1,14 @@
 package cn.wan.owl.model;
 
+import cn.wan.owl.dto.pdf.IReportStructure;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import lombok.AllArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -77,4 +82,6 @@ public class NProduct {
     public void setProductstate(String productstate) {
         this.productstate = productstate;
     }
+
+
 }

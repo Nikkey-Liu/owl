@@ -34,5 +34,12 @@ public class NProductService {
     public List<NProduct> viewOnsaleProductByProductState(String productState){
         return nProductMapper.selectAllProductOnsale(productState);
     }
+    public NProduct selectProductbyid( int id)
+    {
+        return nProductMapper.selectByPrimaryKey(id);
+    }
+    public int approveProductByTeacher(NProduct nProduct){
+        return nProductMapper.updateByPrimaryKeySelective(nProduct);
+    }
 
 }

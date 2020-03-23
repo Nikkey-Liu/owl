@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.http.ResponseEntity;
 
 
 @Data
@@ -17,7 +18,6 @@ public class CommonResponse {
     private Object data;
 
     private int code;
-
 
 
     public static CommonResponse success(Object data) {

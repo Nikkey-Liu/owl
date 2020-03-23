@@ -18,7 +18,10 @@ public class NUserServiceImpl implements NUserService {
 
     @Override
     public NUser queryUserId(int userid) {
-        return nUserMapper.selectByPrimaryKey(userid);
+        System.out.println(userid);
+        NUser nUser=nUserMapper.selectByPrimaryKey(userid);
+        System.out.println(nUser);
+        return nUser;
     }
 
     @Override

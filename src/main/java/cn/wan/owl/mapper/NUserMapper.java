@@ -1,6 +1,7 @@
 package cn.wan.owl.mapper;
 
 import cn.wan.owl.model.NUser;
+import org.apache.ibatis.annotations.Param;
 
 public interface NUserMapper {
     int deleteByPrimaryKey(Integer userid);
@@ -9,7 +10,7 @@ public interface NUserMapper {
 
     int insertSelective(NUser record);
     NUser selectByUsernameAndUserlever(String username);
-    NUser selectByPrimaryKey(Integer userid);
+    NUser selectByPrimaryKey(@Param("userid")Integer userid);
 
     int updateByPrimaryKeySelective(NUser record);
 
