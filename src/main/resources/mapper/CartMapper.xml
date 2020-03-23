@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.wan.owl.mapper.CartMapper" >
+  <resultMap id="BaseResultMap" type="cn.wan.owl.model.Cart" >
+    <id column="cartid" property="cartid" jdbcType="INTEGER" />
+    <result column="productid" property="productid" jdbcType="INTEGER" />
+    <result column="productname" property="productname" jdbcType="VARCHAR" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="INTEGER" />
+    <result column="quantity" property="quantity" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cartid, productid, productname, userid, price, quantity
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cart
+    where cartid = #{cartid,jdbcType=INTEGER}
+  </select>
+  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from cart
+    where userid = #{userid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cart
+    where cartid = #{cartid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.wan.owl.model.Cart" >
+    insert into cart (cartid, productid, productname, 
+      userid, price, quantity
+      )
+    values (#{cartid,jdbcType=INTEGER}, #{productid,jdbcType=INTEGER}, #{productname,jdbcType=VARCHAR}, 
+      #{userid,jdbcType=INTEGER}, #{price,jdbcType=INTEGER}, #{quantity,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.wan.owl.model.Cart" >
+    insert into cart
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cartid != null" >
+        cartid,
+      </if>
+      <if test="productid != null" >
+        productid,
+      </if>
+      <if test="productname != null" >
+        productname,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="quantity != null" >
+        quantity,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cartid != null" >
+        #{cartid,jdbcType=INTEGER},
+      </if>
+      <if test="productid != null" >
+        #{productid,jdbcType=INTEGER},
+      </if>
+      <if test="productname != null" >
+        #{productname,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=INTEGER},
+      </if>
+      <if test="quantity != null" >
+        #{quantity,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.wan.owl.model.Cart" >
+    update cart
+    <set >
+      <if test="productid != null" >
+        productid = #{productid,jdbcType=INTEGER},
+      </if>
+      <if test="productname != null" >
+        productname = #{productname,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=INTEGER},
+      </if>
+      <if test="quantity != null" >
+        quantity = #{quantity,jdbcType=INTEGER},
+      </if>
+    </set>
+    where cartid = #{cartid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.wan.owl.model.Cart" >
+    update cart
+    set productid = #{productid,jdbcType=INTEGER},
+      productname = #{productname,jdbcType=VARCHAR},
+      userid = #{userid,jdbcType=INTEGER},
+      price = #{price,jdbcType=INTEGER},
+      quantity = #{quantity,jdbcType=INTEGER}
+    where cartid = #{cartid,jdbcType=INTEGER}
+  </update>
+</mapper>

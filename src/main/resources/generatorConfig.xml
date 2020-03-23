@@ -86,7 +86,19 @@
             <columnRenamingRule searchString="c_" replaceString=""/>
         </table>
        -->
-        <table schema="" tableName="product" domainObjectName="NProduct"
+        <table schema="" tableName="cart" domainObjectName="Cart"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <columnRenamingRule searchString="c_" replaceString=""/>
+        </table>
+        <table schema="" tableName="order" domainObjectName="Order"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <columnRenamingRule searchString="c_" replaceString=""/>
+        </table>
+        <table schema="" tableName="payments" domainObjectName="Payments"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

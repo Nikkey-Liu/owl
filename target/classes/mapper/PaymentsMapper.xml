@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.wan.owl.mapper.PaymentsMapper" >
+  <resultMap id="BaseResultMap" type="cn.wan.owl.model.Payments" >
+    <id column="cardid" property="cardid" jdbcType="INTEGER" />
+    <result column="cardnumber" property="cardnumber" jdbcType="VARCHAR" />
+    <result column="expirymonth" property="expirymonth" jdbcType="INTEGER" />
+    <result column="expiryyear" property="expiryyear" jdbcType="INTEGER" />
+    <result column="cvv" property="cvv" jdbcType="INTEGER" />
+    <result column="balance" property="balance" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cardid, cardnumber, expirymonth, expiryyear, cvv, balance
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from payments
+    where cardid = #{cardid,jdbcType=INTEGER}
+  </select>
+  <select id="selectBycardnumber" resultMap="BaseResultMap"  >
+    select
+    <include refid="Base_Column_List" />
+    from payments
+    where cardnumber = #{cardnumber,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from payments
+    where cardid = #{cardnumber,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.wan.owl.model.Payments" >
+    insert into payments (cardid, cardnumber, expirymonth, 
+      expiryyear, cvv, balance
+      )
+    values (#{cardid,jdbcType=INTEGER}, #{cardnumber,jdbcType=VARCHAR}, #{expirymonth,jdbcType=INTEGER}, 
+      #{expiryyear,jdbcType=INTEGER}, #{cvv,jdbcType=INTEGER}, #{balance,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.wan.owl.model.Payments" >
+    insert into payments
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cardid != null" >
+        cardid,
+      </if>
+      <if test="cardnumber != null" >
+        cardnumber,
+      </if>
+      <if test="expirymonth != null" >
+        expirymonth,
+      </if>
+      <if test="expiryyear != null" >
+        expiryyear,
+      </if>
+      <if test="cvv != null" >
+        cvv,
+      </if>
+      <if test="balance != null" >
+        balance,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cardid != null" >
+        #{cardid,jdbcType=INTEGER},
+      </if>
+      <if test="cardnumber != null" >
+        #{cardnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="expirymonth != null" >
+        #{expirymonth,jdbcType=INTEGER},
+      </if>
+      <if test="expiryyear != null" >
+        #{expiryyear,jdbcType=INTEGER},
+      </if>
+      <if test="cvv != null" >
+        #{cvv,jdbcType=INTEGER},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.wan.owl.model.Payments" >
+    update payments
+    <set >
+      <if test="cardnumber != null" >
+        cardnumber = #{cardnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="expirymonth != null" >
+        expirymonth = #{expirymonth,jdbcType=INTEGER},
+      </if>
+      <if test="expiryyear != null" >
+        expiryyear = #{expiryyear,jdbcType=INTEGER},
+      </if>
+      <if test="cvv != null" >
+        cvv = #{cvv,jdbcType=INTEGER},
+      </if>
+      <if test="balance != null" >
+        balance = #{balance,jdbcType=INTEGER},
+      </if>
+    </set>
+    where cardid = #{cardid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.wan.owl.model.Payments" >
+    update payments
+    set cardnumber = #{cardnumber,jdbcType=VARCHAR},
+      expirymonth = #{expirymonth,jdbcType=INTEGER},
+      expiryyear = #{expiryyear,jdbcType=INTEGER},
+      cvv = #{cvv,jdbcType=INTEGER},
+      balance = #{balance,jdbcType=INTEGER}
+    where cardid = #{cardid,jdbcType=INTEGER}
+  </update>
+</mapper>

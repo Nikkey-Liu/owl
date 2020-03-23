@@ -142,28 +142,22 @@
                         url: "/product/approve",
                         type: 'GET',
                         data:req ,
-                        datat:'blob',
-                        contentType:'application/pdf',
+                        datat:'arraybuffer',
+                        contentType:'application/json',
                         success: function (response) {
                             alert('get response');
-                            var a = document.createElement('a');
-                            var pdfAsDataUri = "data:application/pdf," + response;
-                            a.download = 'export.pdf';
-                            a.type = 'application/pdf';
-                            a.href = pdfAsDataUri;
-                            a.click();
-                            // let blob = new Blob([response], {type: 'blob'});
-                            // let link = document.createElement('a');
-                            // let objectURL = window.URL.createObjectURL(blob);
-                            // link.href = objectURL;
-                            // link.target = '_self';
-                            // link.download = "report.pdf";
-                            // (document.body || document.documentElement).appendChild(link);
-                            // link.click();
-                            // setTimeout(()=>{
-                            //     window.URL.revokeObjectURL(objectURL);
-                            //     link.remove();
-                            // }, 100);
+                            let blob = new Blob([response], {type: 'arraybuffer'});
+                            let link = document.createElement('a');
+                            let objectURL = window.URL.createObjectURL(blob);
+                            link.href = objectURL;
+                            link.target = '_self';
+                            link.download = "report.pdf";
+                            (document.body || document.documentElement).appendChild(link);
+                            link.click();
+                            setTimeout(()=>{
+                                window.URL.revokeObjectURL(objectURL);
+                                link.remove();
+                            }, 100);
                         },
                         Error: function (xhr, error, exception) {
                             alert(exception.toString());
