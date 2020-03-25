@@ -6,3 +6,6 @@ target/classes/.DS_Store
 target/classes/cn/wan/owl/.DS_Store
 target/classes/cn/wan/.DS_Store
 target/classes/cn/.DS_Store
+src/main/java/cn/wan/owl/config/DataSourceConfig.java
+.idea/workspace.xml
+.idea/inspectionProfiles/Project_Default.xml
