@@ -30,53 +30,15 @@
               "target": "_self"
             },
             {
-              "title": "welcome-2",
-              "href": "page/welcome-2.html",
+              "title": "myOrder",
+              "href": "/ui/ul-studentlistOrder",
               "icon": "fa fa-tachometer",
               "target": "_self"
             },
             {
-              "title": "welcome-3",
-              "href": "page/welcome-3.html",
+              "title": "myCart",
+              "href": "/ui/ul-studentlistCart",
               "icon": "fa fa-tachometer",
-              "target": "_self"
-            }
-          ]
-        },
-        {
-          "title": "menu manange",
-          "href": "page/menu.html",
-          "icon": "fa fa-window-maximize",
-          "target": "_self"
-        },
-        {
-          "title": "config",
-          "href": "page/setting.html",
-          "icon": "fa fa-gears",
-          "target": "_self"
-        },
-        {
-          "title": "table example",
-          "href": "page/table.html",
-          "icon": "fa fa-file-text",
-          "target": "_self"
-        },
-        {
-          "title": "table example",
-          "href": "",
-          "icon": "fa fa-calendar",
-          "target": "_self",
-          "child": [
-            {
-              "title": "ordinory table",
-              "href": "page/form.html",
-              "icon": "fa fa-list-alt",
-              "target": "_self"
-            },
-            {
-              "title": "table multi",
-              "href": "page/form-step.html",
-              "icon": "fa fa-navicon",
               "target": "_self"
             }
           ]

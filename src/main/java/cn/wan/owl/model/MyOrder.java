@@ -1,6 +1,6 @@
 package cn.wan.owl.model;
 
-public class Order {
+public class MyOrder {
     private Integer orderid;
 
     private Integer productid;

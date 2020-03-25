@@ -1,8 +1,4 @@
-/**
- * date:2019/06/10
- * author:Mr.Chung
- * description:layuimini 框架扩展
- */
+
 
 layui.define(["element", "jquery", "layer"], function (exports) {
         var element = layui.element,

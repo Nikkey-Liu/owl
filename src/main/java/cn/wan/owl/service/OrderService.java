@@ -1,24 +1,26 @@
 package cn.wan.owl.service;
 
-import cn.wan.owl.mapper.OrderMapper;
-import cn.wan.owl.model.Order;
+import cn.wan.owl.mapper.MyOrderMapper;
+import cn.wan.owl.model.MyOrder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Slf4j
 @Service
-public class OrdeService {
+public class OrderService {
     @Autowired
-    OrderMapper orderMapper;
-    public List<Order> getOrdersbyUserId(int id){
+    MyOrderMapper orderMapper;
+    public List<MyOrder> getOrdersbyUserId(int id){
         return orderMapper.selectByUserid(id);
 }
-    public void AddOrders(List<Order> orders)
+    public void AddOrders(List<MyOrder> orders)
     {
-        for (Order order:orders)
+        for (MyOrder order:orders)
         {
             orderMapper.insert(order);
         }

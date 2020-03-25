@@ -86,24 +86,14 @@
             <columnRenamingRule searchString="c_" replaceString=""/>
         </table>
        -->
-        <table schema="" tableName="cart" domainObjectName="Cart"
+
+        <table schema="" tableName="myorder" domainObjectName="MyOrder"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
             <columnRenamingRule searchString="c_" replaceString=""/>
         </table>
-        <table schema="" tableName="order" domainObjectName="Order"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-            <columnRenamingRule searchString="c_" replaceString=""/>
-        </table>
-        <table schema="" tableName="payments" domainObjectName="Payments"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-            <columnRenamingRule searchString="c_" replaceString=""/>
-        </table>
+
         <!--mvn mybatis-generator:generate -e-->
     </context>
 </generatorConfiguration>

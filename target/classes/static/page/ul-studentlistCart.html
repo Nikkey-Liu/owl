@@ -4,8 +4,7 @@
 
         <script type="text/html" id="toolbarDemo">
             <div class="layui-btn-container">
-                <a href="javascript:;" class="layui-btn layui-btn-sm data-add-btn" data-type="tabAdd" data-mpi="m-p-i-9" data-one-page="/ui/ul-studentlistCart" target="_self"><span class="layui-left-nav"> view my cart</span></a>
-
+                <a href="javascript:;" class="layui-btn layui-btn-sm data-add-btn" data-type="tabAdd" data-mpi="m-p-i-9" data-one-page="/payment/uiAll" target="_self"><span class="layui-left-nav"> pay all</span></a>
 <!--                <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn"> Undo</button>-->
             </div>
         </script>
@@ -13,8 +12,8 @@
         <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
 
         <script type="text/html" id="currentTableBar">
-            <a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="edit">buy now</a>
-            <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="delete">add to cart</a>
+            <a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="edit">pay</a>
+            <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="delete">Delete</a>
         </script>
 
     </div>
@@ -28,7 +27,7 @@
 
         table.render({
             elem: '#currentTableId',
-            url: '/product/list/Allproduct',
+            url: '/cart/list/cart',
             parseData: function (res) { //res 即为原始返回的数据
                 return {
                     "code": res.code, //解析接口状态
@@ -46,13 +45,12 @@
             cols: [
                 [
                     {type: "checkbox", width: 50, fixed: "left"},
-                    {field: 'productid', width: 150, title: 'productId', sort: true},
-                    {field: 'productname', width: 150, title: 'productname', sort: true},
-                    {field: 'productdescription', width: 110, title: 'productdescription', sort: true},
-                    {field: 'quantity', width: 100, title: 'quantity'},
+                    {field: 'cartid', width: 150, title: 'cartid', sort: true},
+                    {field: 'productid', width: 150, title: 'productid', sort: true},
+                    {field: 'productname', width: 110, title: 'productname', sort: true},
+                    {field: 'userid', width: 100, title: 'userid'},
                     {field: 'price', width: 110, title: 'price', sort: true},
-                    {field: 'userid', width: 100, title: 'providerId'},
-                    {field: 'productstate', title: 'productstate', width: 80},
+                    {field: 'quantity', width: 100, title: 'quantity'},
                     {title: 'action', minWidth: 50, templet: '#currentTableBar', fixed: "right", align: "center"}
                 ]
             ],
@@ -69,7 +67,7 @@
             const req = {
             };
             $.ajax({
-                url: "/product/undo",
+                url: "",
                 type: 'POST',
                 data: JSON.stringify(req),
                 dataType: 'json',
@@ -115,19 +113,20 @@
         table.on('tool(currentTableFilter)', function (obj) {
             var data = obj.data;
             if (obj.event === 'edit') {
+                // window.location.href="goodsSpecList.jsp";jsp
                 // var element1 = document.createElement("a");
                 // element1.href='javascript:;';
                 // element1.target='_self';
                 // element1.setAttribute('data-type','tabAdd');
                 // element1.setAttribute('data-mpi','m-p-i-9');
-                // element1.setAttribute('data-one-page','/payment/uibyid?id= '+data.productid );
+                // element1.setAttribute('data-one-page','/payment/uiCart?id= '+data.cartid );
                 // element1.click();
                 const req = {
-                    id :data.productid
+                    id :data.cartid
                 };
-                layer.confirm('pay', function (index) {
+                layer.confirm('delete', function (index) {
                     $.ajax({
-                        url: "/payment/uibyid",
+                        url: "/payment/uiCart",
                         type: 'POST',
                         data: JSON.stringify(req),
                         dataType: 'json',
@@ -136,13 +135,13 @@
                             console.log("res = " + JSON.stringify(data))
                             const code = data.code;
                             if (code === 0) {
-                                layer.msg('success add a product from table', function () {
+                                layer.msg('success delete a message from table', function () {
 
                                     layuimini.initConten("/ui/ul-payments", false);
                                 });
 
                             } else {
-                                layer.msg('add failed for some reasons ', function () {
+                                layer.msg('delete failed for some reasons ', function () {
 
                                 });
 
@@ -154,14 +153,13 @@
                         }
                     });
                 });
-
             } else if (obj.event === 'delete') {
                 const req = {
-                    id :data.productid
+                    id :data.cartid
                 };
-                layer.confirm('add to cart', function (index) {
+                layer.confirm('delete', function (index) {
                     $.ajax({
-                        url: "/cart/add",
+                        url: "/cart/delete",
                         type: 'POST',
                         data: JSON.stringify(req),
                         dataType: 'json',
@@ -170,7 +168,7 @@
                             console.log("res = " + JSON.stringify(data))
                             const code = data.code;
                             if (code === 0) {
-                                layer.msg('success add a product from table', function () {
+                                layer.msg('success delete a message from table', function () {
 
                                     table.reload('currentTableId',{//重载表格
                                         page:{
@@ -181,7 +179,7 @@
                                 });
 
                             } else {
-                                layer.msg('add failed for some reasons ', function () {
+                                layer.msg('delete failed for some reasons ', function () {
                                     table.reload('currentTableId',{//重载表格
                                         page:{
                                             curr:1

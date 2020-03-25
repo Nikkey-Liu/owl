@@ -4,7 +4,7 @@
 
         <script type="text/html" id="toolbarDemo">
             <div class="layui-btn-container">
-                <a href="javascript:;" class="layui-btn layui-btn-sm data-add-btn" data-type="tabAdd" data-mpi="m-p-i-9" data-one-page="/ui/ul-product-Add" target="_self"><span class="layui-left-nav"> view my cart</span></a>
+                <a href="javascript:;" class="layui-btn layui-btn-sm data-add-btn" data-type="tabAdd" data-mpi="m-p-i-9" data-one-page="/ui/ul-studentlistCart" target="_self"><span class="layui-left-nav"> view my cart</span></a>
 
 <!--                <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn"> Undo</button>-->
             </div>
@@ -13,8 +13,8 @@
         <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
 
         <script type="text/html" id="currentTableBar">
-            <a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="edit">add to cart</a>
-            <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="delete">buy now</a>
+            <a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="edit">buy now</a>
+            <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="delete">add to cart</a>
         </script>
 
     </div>
@@ -115,28 +115,88 @@
         table.on('tool(currentTableFilter)', function (obj) {
             var data = obj.data;
             if (obj.event === 'edit') {
+                // var element1 = document.createElement("a");
+                // element1.href='javascript:;';
+                // element1.target='_self';
+                // element1.setAttribute('data-type','tabAdd');
+                // element1.setAttribute('data-mpi','m-p-i-9');
+                // element1.setAttribute('data-one-page','/payment/uibyid?id= '+data.productid );
+                // element1.click();
+                const req = {
+                    id :data.productid
+                };
+                layer.confirm('pay', function (index) {
+                    $.ajax({
+                        url: "/payment/uibyid",
+                        type: 'POST',
+                        data: JSON.stringify(req),
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        success: function (data, status, xhr) {
+                            console.log("res = " + JSON.stringify(data))
+                            const code = data.code;
+                            if (code === 0) {
+                                layer.msg('success add a product from table', function () {
 
-                var content = layuimini.getHrefContent('/ui/ul-product-Add');
-                var openWH = layuimini.getOpenWidthHeight();
+                                    layuimini.initConten("/ui/ul-payments", false);
+                                });
 
-                var index = layer.open({
-                    title: 'edit product',
-                    type: 1,
-                    shade: 0.2,
-                    maxmin: true,
-                    shadeClose: true,
-                    area: [openWH[0] + 'px', openWH[1] + 'px'],
-                    offset: [openWH[2] + 'px', openWH[3] + 'px'],
-                    content: content,
+                            } else {
+                                layer.msg('add failed for some reasons ', function () {
+
+                                });
+
+
+                            }
+                        },
+                        Error: function (xhr, error, exception) {
+                            alert(exception.toString());
+                        }
+                    });
                 });
-                $(window).on("resize", function () {
-                    layer.full(index);
-                });
-                return false;
+
             } else if (obj.event === 'delete') {
-                layer.confirm('delete', function (index) {
-                    obj.del();
-                    layer.close(index);
+                const req = {
+                    id :data.productid
+                };
+                layer.confirm('add to cart', function (index) {
+                    $.ajax({
+                        url: "/cart/add",
+                        type: 'POST',
+                        data: JSON.stringify(req),
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        success: function (data, status, xhr) {
+                            console.log("res = " + JSON.stringify(data))
+                            const code = data.code;
+                            if (code === 0) {
+                                layer.msg('success add a product from table', function () {
+
+                                    table.reload('currentTableId',{//重载表格
+                                        page:{
+                                            curr:1
+                                        }
+                                    })
+                                    time: 2000
+                                });
+
+                            } else {
+                                layer.msg('add failed for some reasons ', function () {
+                                    table.reload('currentTableId',{//重载表格
+                                        page:{
+                                            curr:1
+                                        }
+                                    })
+                                    time: 2000
+                                });
+
+
+                            }
+                        },
+                        Error: function (xhr, error, exception) {
+                            alert(exception.toString());
+                        }
+                    });
                 });
             }
         });

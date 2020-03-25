@@ -1,0 +1,118 @@
+<div class="layuimini-container layui-anim layui-anim-upbit">
+    <div class="layuimini-main">
+<div class="layui-form" >
+
+    <input type="hidden" id ="cardid"  name="cardid">
+    <input type="hidden" id ="balance"  name="balance">
+    <div class="layui-form-item">
+
+        <label class="layui-form-label">cardnumber</label>
+
+        <div class="layui-input-inline">
+
+            <input type="text" id="cardnumber" name="cardnumber" class="layui-input" placeholder="Please input Product Name" >
+
+        </div>
+
+    </div>
+
+    <div class="layui-form-item">
+
+        <label class="layui-form-label">expirymonth</label>
+
+        <div class="layui-input-inline">
+
+            <input type="text"  id="expirymonth" name="expirymonth" class="layui-input" placeholder="product description" >
+
+        </div>
+
+    </div>
+    <div class="layui-form-item">
+
+        <label class="layui-form-label">expiryyear</label>
+
+        <div class="layui-input-inline">
+
+            <input type="text" id="expiryyear" name="expiryyear" class="layui-input" placeholder="quantity"   >
+
+        </div>
+
+    </div>
+    <div class="layui-form-item">
+
+        <label class="layui-form-label">cvv</label>
+
+        <div class="layui-input-inline">
+
+            <input type="text"id="cvv" name="cvv" class="layui-input" placeholder="price"  >
+
+        </div>
+
+    </div>
+<!--    <div class="layui-form-item">-->
+
+<!--        <label class="layui-form-label">Product productstate</label>-->
+
+<!--        <div class="layui-input-inline">-->
+
+<!--            <input type="text"id="productstate" name="productstate" class="layui-input" placeholder="productstate">-->
+
+<!--        </div>-->
+
+<!--    </div>-->
+
+        <div class="layui-form-item">
+            <button class="layui-btn layui-btn-fluid" onclick="submite()">submit</button>
+        </div>
+
+
+</div>
+</div>
+</div>
+<script>
+    function submite() {
+
+        var cardnumber = $("#cardnumber").val();
+        var expirymonth = $("#expirymonth").val();
+        var expiryyear = $("#expiryyear").val();
+        var cvv = $("#cvv").val();
+        var cardid = $("#cardid").val();
+        var balance=$("#balance").val();
+        // var productstate= $("#productstate").val();
+
+        const req = {
+            cardid: cardid,
+            cardnumber: cardnumber,
+            expirymonth: expirymonth,
+            expiryyear: expiryyear,
+            cvv: cvv,
+            balance: balance
+            // productstate: productstate
+        };
+        $.ajax({
+                url: "/payment/Payments",
+                type: 'POST',
+                data: JSON.stringify(req),
+                dataType: 'json',
+                contentType: 'application/json',
+                success: function (data, status, xhr) {
+                    console.log("res = " + JSON.stringify(data))
+                    const code = data.code;
+                    if (code === 0) {
+                        layer.msg('success add', function () {
+
+                        });
+                    } else {
+                        layer.msg('faile add', function () {
+
+                        });
+                    }
+                },
+                Error: function (xhr, error, exception) {
+                    alert(exception.toString());
+                }
+            });
+
+    }
+    </script>
+

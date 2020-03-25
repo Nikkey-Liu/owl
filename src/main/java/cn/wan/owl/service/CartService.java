@@ -14,6 +14,9 @@ import java.util.List;
 public class CartService {
     @Autowired
     CartMapper cartMapper;
+    public Cart selectCartByID(int cartid){
+        return cartMapper.selectByPrimaryKey(cartid);
+    }
     public List <Cart> selectCartbyUserID(int userid){
         return cartMapper.selectByUserId(userid);
     }
