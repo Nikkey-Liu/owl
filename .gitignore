@@ -9,3 +9,5 @@ target/classes/cn/.DS_Store
 src/main/java/cn/wan/owl/config/DataSourceConfig.java
 .idea/workspace.xml
 .idea/inspectionProfiles/Project_Default.xml
+src/main/java/cn/wan/owl/config/DataSourceConfig.java
+*.class
