@@ -1,7 +1,7 @@
 
 .classpath
 .settings/org.eclipse.core.resources.prefs
-target/classes/.DS_Store
+target/*
 *.class
 target/classes/cn/wan/owl/.DS_Store
 target/classes/cn/wan/.DS_Store
