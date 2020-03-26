@@ -1,11 +1,11 @@
 package cn.wan.owl.controller;
 
-import cn.wan.owl.dto.IdDto;
-import cn.wan.owl.dto.OrderDto;
-import cn.wan.owl.dto.PayhelperDto;
-import cn.wan.owl.dto.PaymentsDto;
+import cn.wan.owl.dto.*;
 import cn.wan.owl.dto.price.activity.GoodsActivityContext;
 import cn.wan.owl.dto.price.activity.GoodsActivityStrategyFactory;
+import cn.wan.owl.dto.receipt.LetterHeadPrinting;
+import cn.wan.owl.dto.receipt.Receipt;
+import cn.wan.owl.dto.receipt.ReceiptTypes;
 import cn.wan.owl.mapper.PaymentsMapper;
 import cn.wan.owl.model.*;
 import cn.wan.owl.service.CartService;
@@ -91,16 +91,22 @@ public class PaymentController {
                     System.out.println("list and cart is null use product id get value");
                     NProduct nProduct = nProductService.selectProductbyid(id);
                     intToBigDecimal=new BigDecimal(nProduct.getPrice());
-                    System.out.println("-----------------------------2");
+//                    System.out.println("-----------------------------2");
                     intToBigDecimal=  goodsActivityContext.getPrice(intToBigDecimal);
-                    System.out.println("-----------------------------4");
+//                    System.out.println("-----------------------------4");
                     if (payments1.getBalance()> intToBigDecimal.intValue()) {
-                        System.out.println("-----------------------------5");
+//                        System.out.println("-----------------------------5");
                         MyOrder order = orderDto.getOrderByPublic(nProduct);
-                        System.out.println("-----------------------------6");
+//                        System.out.println("-----------------------------6");
                         order.setPrice(intToBigDecimal.intValue());
+                        Receipt receipt = Receiptdto.getInstance().createReceipt( order,ReceiptTypes.QR_CODE_RECEIPT, new LetterHeadPrinting() ,nProduct.getPrice());
+                       receipt.print();
                         orders.add(order);
                         nProduct.setQuantity(nProduct.getQuantity()-1);
+                        if (nProduct.getQuantity()==0)
+                        {
+                            nProduct.setProductstate(Constantvalue.SALEOUT);
+                        }
                         nProductService.editProduct(nProduct);
                         orderService.AddOrders(orders);
                         System.out.println("Payments success and add Order ");
@@ -117,6 +123,8 @@ public class PaymentController {
                         order.setPrice(intToBigDecimal.intValue());
                         orders.add(order);
                         cartService.deletCartbyid(cart.getCartid());
+                        Receipt receipt = Receiptdto.getInstance().createReceipt( order,ReceiptTypes.QR_CODE_RECEIPT, new LetterHeadPrinting() ,cart.getPrice());
+                        receipt.print();
                         orderService.AddOrders(orders);
                         System.out.println("Payments success and add Order ");
                         return CommonResponse.success();
@@ -132,19 +140,22 @@ public class PaymentController {
                 }
                     System.out.println("get price");
                 intToBigDecimal=new BigDecimal(price);
-                    System.out.println("-----------------------------2");
+//                    System.out.println("-----------------------------2");
                 intToBigDecimal= goodsActivityContext.getPrice(intToBigDecimal);
-                    System.out.println("-----------------------------3");
+//                    System.out.println("-----------------------------3");
                 if (payments1.getBalance() > intToBigDecimal.intValue()) {
-                    System.out.println("-----------------------------4");
+//                    System.out.println("-----------------------------4");
                     for (Cart c : carts) {
-                        System.out.println("-----------------------------5");
+//                        System.out.println("-----------------------------5");
                         MyOrder order = orderDto.getOrderByCart(c);
+                        order.setPaymentstate(order.getPaymentstate()+"list pay as a order list");//price insert totall price
                         order.setPrice(intToBigDecimal.intValue());
+                        Receipt receipt = Receiptdto.getInstance().createReceipt( order,ReceiptTypes.QR_CODE_RECEIPT, new LetterHeadPrinting() ,c.getPrice());
+                        receipt.print();
                         orders.add(order);
                         cartService.deletCartbyid(c.getCartid());
                     }
-                    System.out.println("-----------------------------6  ");
+//                    System.out.println("-----------------------------6  ");
                     orderService.AddOrders(orders);
                     System.out.println("Payments success and add Order");
                     return CommonResponse.success();

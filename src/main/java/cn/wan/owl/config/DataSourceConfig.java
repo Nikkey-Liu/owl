@@ -15,6 +15,6 @@ public class DataSourceConfig {
 
     private String username = "root";
 
-    private String password = "root";
+    private String password = "123456";
 
 }

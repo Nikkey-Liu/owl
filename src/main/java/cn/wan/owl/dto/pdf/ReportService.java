@@ -44,7 +44,7 @@ public class ReportService {private static ReportService reportService;
 //		report.generateReport( builder, response );
     }
 
-    public ByteArrayInputStream printDocument(String docType, NProduct nProduct )
+    public ByteArrayOutputStream printDocument(String docType, NProduct nProduct )
     {
         ReportCreator reportCreator =new ReportCreator();
         MyPDFTable table = new MyPDFTable(1, 5);
@@ -63,7 +63,7 @@ public class ReportService {private static ReportService reportService;
 
 
 
-        return new ByteArrayInputStream(report.generateReport(o).toByteArray());
+        return report.generateReport(o) ;
     }
 
 }

@@ -135,13 +135,13 @@
                             console.log("res = " + JSON.stringify(data))
                             const code = data.code;
                             if (code === 0) {
-                                layer.msg('success delete a message from table', function () {
+                                layer.msg('success', function () {
 
                                     layuimini.initConten("/ui/ul-payments", false);
                                 });
 
                             } else {
-                                layer.msg('delete failed for some reasons ', function () {
+                                layer.msg(' failed for some reasons ', function () {
 
                                 });
 

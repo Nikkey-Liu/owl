@@ -18,6 +18,7 @@ import lombok.experimental.var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.Writer;
 
@@ -80,27 +82,30 @@ public class ProductController {
         return CommonResponse.success();
     }
 
-    @RequestMapping(value = "/approve", method = RequestMethod.GET,
+    @RequestMapping(value = "/approve/{id}", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_PDF_VALUE )
-    public ResponseEntity <InputStreamResource>  approve( @RequestParam(value = "id") Integer  id ){
+    public ResponseEntity <byte[]>  approve( @PathVariable( "id") Integer  id ){
 
          NProduct nProduct= nProductService.selectProductbyid(id);
 
          nProduct.setProductstate(Constantvalue.ONSALE);
          nProductService.editProduct(nProduct);
 
-        ByteArrayInputStream bis = ReportService.getReportServiceInstance(ReportCreator.getReportFactory()).printDocument( "PDF",nProduct);
+        ByteArrayOutputStream out = ReportService.getReportServiceInstance(ReportCreator.getReportFactory()).printDocument( "PDF",nProduct);
+        if (out==null)
+        {
+            System.out.println("------------------------null messege pdf");
+        }
         System.out.println("reportPDF builder  finish");
         System.out.println("---------------------build heaeders--------------------");
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Disposition", "inline; filename=report.pdf");
-        headers.add("content-type", "application/pdf; charset=utf-8");
+        headers.setContentType( MediaType.parseMediaType( "application/pdf" ) );
+//        headers.add("Content-Disposition", "attachment; filename=report.pdf");
+//        headers.add("content-type", "application/pdf; charset=utf-8");
+        headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
         System.out.println("--------------------finish---------------------");
-        return ResponseEntity
-                .ok()
-                .headers(headers)
-                .contentType(MediaType.APPLICATION_PDF)
-                .body(new InputStreamResource(bis));
+        ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(out.toByteArray(), headers, HttpStatus.OK);
+        return response;
     }
     @GetMapping("/list/Allproduct")
     public Object Allproduct(String orderBy, String orderType) {

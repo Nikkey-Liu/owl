@@ -134,36 +134,40 @@
                 });
                 return false;
             } else if (obj.event === 'delete') {
-                var req = {
-                    id :data.productid
-                };
-                layer.confirm('approve', function (index) {
-                    $.ajax({
-                        url: "/product/approve",
-                        type: 'GET',
-                        data:req ,
-                        datat:'arraybuffer',
-                        contentType:'application/json',
-                        success: function (response) {
-                            alert('get response');
-                            let blob = new Blob([response], {type: 'arraybuffer'});
-                            let link = document.createElement('a');
-                            let objectURL = window.URL.createObjectURL(blob);
-                            link.href = objectURL;
-                            link.target = '_self';
-                            link.download = "report.pdf";
-                            (document.body || document.documentElement).appendChild(link);
-                            link.click();
-                            setTimeout(()=>{
-                                window.URL.revokeObjectURL(objectURL);
-                                link.remove();
-                            }, 100);
-                        },
-                        Error: function (xhr, error, exception) {
-                            alert(exception.toString());
-                        }
-                    });
-                });
+                var id =data.productid;
+                var sUrl =  '/product/approve/'+id;
+                window.open(sUrl);
+                // var req = {
+                //     id :data.productid
+                // };
+                // layer.confirm('approve', function (index) {
+                //     $.ajax({
+                //         url: "/product/approve",
+                //         type: 'GET',
+                //         data:req ,
+                //          dataType:'arraybuffer',
+                //         contentType:'application/json',
+                //         success: function (response) {
+                //             alert('get response');
+                //             window.open("data:application/pdf," + escape(response));
+                            // let blob = new Blob([response], {type: 'arraybuffer'});
+                            // let link = document.createElement('a');
+                            // let objectURL = window.URL.createObjectURL(blob);
+                            // link.href = objectURL;
+                            // link.target = '_self';
+                            // link.download = "report.pdf";
+                            // (document.body || document.documentElement).appendChild(link);
+                            // link.click();
+                            // setTimeout(()=>{
+                            //     window.URL.revokeObjectURL(objectURL);
+                            //     link.remove();
+                            // }, 100);
+                        // },
+                        // Error: function (xhr, error, exception) {
+                        //     alert(exception.toString());
+                        // }
+                    // });
+                // });
             }
         });
 
