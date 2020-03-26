@@ -1,4 +1,5 @@
 cn\wan\owl\dto\price\activity\GoodsActivityContext.class
+cn\wan\owl\dto\receipt\ReceiptWithBarcode.class
 cn\wan\owl\dto\price\activity\DiscountActivity.class
 cn\wan\owl\model\NProduct.class
 cn\wan\owl\mapper\PurchaseMapper.class
@@ -15,6 +16,7 @@ cn\wan\owl\service\OrderService.class
 cn\wan\owl\model\NUser.class
 cn\wan\owl\dto\pdf\PDFCell.class
 cn\wan\owl\config\MyMvcConfig.class
+cn\wan\owl\dto\receipt\Receipt.class
 cn\wan\owl\service\NUserService.class
 cn\wan\owl\dto\NProductCreateDto.class
 cn\wan\owl\model\User.class
@@ -24,6 +26,7 @@ cn\wan\owl\dto\IdDto.class
 cn\wan\owl\service\NUserServiceImpl.class
 cn\wan\owl\exception\IError.class
 cn\wan\owl\dto\pdf\ReportTypeIsNotImplemented.class
+cn\wan\owl\dto\receipt\LetterHeadPrinting.class
 cn\wan\owl\mapper\NUserMapper.class
 cn\wan\owl\mapper\ProductMapper.class
 cn\wan\owl\dto\UserLoginDto.class
@@ -31,6 +34,7 @@ cn\wan\owl\dto\MyInterceptor.class
 cn\wan\owl\config\ResourcesConfiguration.class
 cn\wan\owl\controller\OrderController.class
 cn\wan\owl\controller\RegisterController.class
+cn\wan\owl\dto\receipt\ISOInvoicePrinter.class
 cn\wan\owl\config\MyBatisConfig.class
 cn\wan\owl\dto\OrderDto.class
 cn\wan\owl\dto\price\activity\GoodActivity.class
@@ -51,7 +55,9 @@ cn\wan\owl\dto\PayhelperDto.class
 cn\wan\owl\util\Constantvalue.class
 cn\wan\owl\dto\ProductDto\WidgetMemento.class
 cn\wan\owl\controller\PurchaseController.class
+cn\wan\owl\dto\Receiptdto.class
 cn\wan\owl\config\OwlDataSourceConfig.class
+cn\wan\owl\dto\receipt\LetterHeadPrinter.class
 cn\wan\owl\mapper\CartMapper.class
 cn\wan\owl\mapper\UserMapper.class
 cn\wan\owl\mapper\PaymentsMapper.class
@@ -67,15 +73,19 @@ cn\wan\owl\mapper\NProductMapper.class
 cn\wan\owl\dto\pdf\MyPDFTable.class
 cn\wan\owl\model\Purchase.class
 cn\wan\owl\model\Cart.class
+cn\wan\owl\dto\receipt\ReceiptTypes.class
 cn\wan\owl\model\ResponseCoN.class
 cn\wan\owl\service\ProductService.class
 cn\wan\owl\dto\pdf\PDFStructure.class
+cn\wan\owl\dto\receipt\Printing.class
 cn\wan\owl\controller\LoginController.class
 cn\wan\owl\OwlApplication.class
 cn\wan\owl\dto\pdf\ReportService.class
 cn\wan\owl\model\Product.class
 cn\wan\owl\dto\pdf\ExcelReport.class
+cn\wan\owl\dto\receipt\QRCodeReceipt.class
 cn\wan\owl\dto\price\activity\FullReduceActivity.class
+cn\wan\owl\dto\receipt\ISOStandardPrinting.class
 cn\wan\owl\dto\CartDto.class
 cn\wan\owl\dto\pdf\IReportStructure.class
 cn\wan\owl\Interceptor\LoginHandlerInterceptor.class
