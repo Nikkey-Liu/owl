@@ -63,7 +63,7 @@ public class ReportService {private static ReportService reportService;
 
 
 
-        return report.generateReport(o);
+        return report.generateReport(o) ;
     }
 
 }

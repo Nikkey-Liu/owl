@@ -215,14 +215,14 @@
                 console.log("res = " + JSON.stringify(data))
                 const code = data.code;
                 if (code === 0) {
-                    layer.msg('登录成功', function () {
+                    layer.msg('register success', function () {
 
                         window.location= '/login/ui';
 
 
                     });
                 } else {
-                    layer.msg('登录失败', function () {
+                    layer.msg('register failed', function () {
                         window.location = '/register/ui';
                     });
                 }

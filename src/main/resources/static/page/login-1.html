@@ -187,7 +187,7 @@
                 console.log("res = " + JSON.stringify(data))
                 const code = data.code;
                 if (code === 0) {
-                    layer.msg('登录成功', function () {
+                    layer.msg(' login success', function () {
                     if (l==1){
                         window.location= '/ui/index';
                     }
@@ -200,7 +200,7 @@
 
                     });
                 } else {
-                    layer.msg('登录失败', function () {
+                    layer.msg(' login success', function () {
                         window.location = '/login/ui';
                     });
                 }

@@ -8,6 +8,7 @@ import cn.wan.owl.model.CommonResponse;
 import cn.wan.owl.model.NProduct;
 import cn.wan.owl.service.CartService;
 import cn.wan.owl.service.NProductService;
+import cn.wan.owl.util.Constantvalue;
 import cn.wan.owl.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +30,10 @@ public class CartController {
     public Object add(@RequestBody IdDto idDto){
         NProduct nProduct=nProductService.selectProductbyid(idDto.getid());
         nProduct.setQuantity(nProduct.getQuantity()-1);
+        if (nProduct.getQuantity()==0)
+        {
+            nProduct.setProductstate(Constantvalue.SALEOUT);
+        }
         nProductService.editProduct(nProduct);
         CartDto cartDto=new CartDto();
         cartService.addCart(cartDto.setCart(nProduct));
