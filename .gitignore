@@ -18,5 +18,8 @@ target/classes/cn/wan/owl/OwlApplication.class
 target/classes/META-INF/owl.kotlin_module
 .idea/workspace.xml
 .idea/workspace.xml
+<<<<<<< HEAD
 *.class
+=======
+>>>>>>> 82918bc849c6c1b02dce02eefee66f230a40b4cb
 .idea/workspace.xml
