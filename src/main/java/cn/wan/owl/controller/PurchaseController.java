@@ -15,19 +15,19 @@ public class PurchaseController {
 
     @Autowired
     private PurchaseService purchaseService;
-
+    //adding purchase
     @PostMapping("/add")
     public Object add(@RequestBody PurchaseCreateDto createDto) {
         purchaseService.add(createDto);
         return CommonResponse.success();
     }
-
+    //listing person
     @GetMapping("/list/person")
     public Object list(String orderBy, String orderType) {
         return CommonResponse.success(
                 purchaseService.list(new PurchaseQueryDto(UserUtil.getCurrentUser().getUserid(), orderBy, orderType)));
     }
-
+    //delete
     @PostMapping("/delete")
     public Object delete(@RequestParam int id) {
         purchaseService.delete(id);
