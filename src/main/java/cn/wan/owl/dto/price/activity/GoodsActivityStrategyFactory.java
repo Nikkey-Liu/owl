@@ -15,6 +15,7 @@ public class GoodsActivityStrategyFactory {
     private GoodActivity goodActivity1=new DiscountActivity();
     private GoodActivity goodActivity2=new FullReduceActivity();
     private GoodActivity goodActivity3=new IntegralActivity();
+
     /**
      * 根据活动类型 获取所对应的策略
      * @param activityType

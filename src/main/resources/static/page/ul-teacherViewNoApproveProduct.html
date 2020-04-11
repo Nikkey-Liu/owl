@@ -1,23 +1,23 @@
 <div class="layuimini-container layui-anim layui-anim-upbit">
     <div class="layuimini-main">
-        <legend>Welcome to UL Student Market : Product</legend>
+    <legend>Welcome to UL Student Market : Product</legend>
 
-        <script type="text/html" id="toolbarDemo">
-            <div class="layui-btn-container">
-                <a href="javascript:;" class="layui-btn layui-btn-sm data-add-btn" data-type="tabAdd" data-mpi="m-p-i-9" data-one-page="/ui/ul-product-Add" target="_self"><span class="layui-left-nav"> Add product</span></a>
+    <script type="text/html" id="toolbarDemo">
+        <div class="layui-btn-container">
+            <a href="javascript:;" class="layui-btn layui-btn-sm data-add-btn" data-type="tabAdd" data-mpi="m-p-i-9" data-one-page="/ui/ul-product-Add" target="_self"><span class="layui-left-nav"> Add product</span></a>
 
-                <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn"> Undo</button>
-            </div>
-        </script>
+            <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn"> Undo</button>
+        </div>
+    </script>
 
-        <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
+    <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
 
-        <script type="text/html" id="currentTableBar">
-<!--            <a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit">Edit</a>-->
-            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">Approve</a>
-        </script>
+    <script type="text/html" id="currentTableBar">
+        <!--            <a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit">Edit</a>-->
+        <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">Approve</a>
+    </script>
 
-    </div>
+</div>
 </div>
 <script>
     layui.use(['form', 'table', 'layuimini', 'element'], function () {
