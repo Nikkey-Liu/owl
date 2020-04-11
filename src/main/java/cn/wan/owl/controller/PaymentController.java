@@ -52,7 +52,7 @@ public class PaymentController {
     public void uiAll(HttpSession httpSession , HttpServletResponse response) throws IOException {
         List<Cart> carts = cartService.selectCartbyUserID(UserUtil.getCurrentUser().getUserid());
         System.out.println(carts);
-       payhelperDto.setCarts(carts);
+        payhelperDto.setCarts(carts);
         httpSession.setAttribute("payhelpDto",payhelperDto);
         response.sendRedirect("/ui/ul-payments");
     }
@@ -60,7 +60,7 @@ public class PaymentController {
     @PostMapping("/uiCart")
     public Object uiCart(HttpSession httpSession, @RequestBody IdDto idDto) {
         Cart cart = cartService.selectCartByID(idDto.getid());
-       payhelperDto.setCart(cart);
+        payhelperDto.setCart(cart);
         httpSession.setAttribute("payhelpDto",payhelperDto);
         return CommonResponse.success();
     }
@@ -85,60 +85,60 @@ public class PaymentController {
         if (fl) {// cofirm payment information
             System.out.println("// cofirm payment information");
 
-                System.out.println("// pass carts");
-                if (payhelperDtos.getFlag()==1) {
-                    int id =payhelperDtos.getId();
-                    System.out.println("list and cart is null use product id get value");
-                    NProduct nProduct = nProductService.selectProductbyid(id);
-                    intToBigDecimal=new BigDecimal(nProduct.getPrice());
+            System.out.println("// pass carts");
+            if (payhelperDtos.getFlag()==1) {
+                int id =payhelperDtos.getId();
+                System.out.println("list and cart is null use product id get value");
+                NProduct nProduct = nProductService.selectProductbyid(id);
+                intToBigDecimal=new BigDecimal(nProduct.getPrice());
 //                    System.out.println("-----------------------------2");
-                    intToBigDecimal=  goodsActivityContext.getPrice(intToBigDecimal);
+                intToBigDecimal=  goodsActivityContext.getPrice(intToBigDecimal);
 //                    System.out.println("-----------------------------4");
-                    if (payments1.getBalance()> intToBigDecimal.intValue()) {
+                if (payments1.getBalance()> intToBigDecimal.intValue()) {
 //                        System.out.println("-----------------------------5");
-                        MyOrder order = orderDto.getOrderByPublic(nProduct);
+                    MyOrder order = orderDto.getOrderByPublic(nProduct);
 //                        System.out.println("-----------------------------6");
-                        order.setPrice(intToBigDecimal.intValue());
-                        Receipt receipt = Receiptdto.getInstance().createReceipt( order,ReceiptTypes.QR_CODE_RECEIPT, new LetterHeadPrinting() ,nProduct.getPrice());
-                       receipt.print();
-                        orders.add(order);
-                        nProduct.setQuantity(nProduct.getQuantity()-1);
-                        if (nProduct.getQuantity()==0)
-                        {
-                            nProduct.setProductstate(Constantvalue.SALEOUT);
-                        }
-                        nProductService.editProduct(nProduct);
-                        orderService.AddOrders(orders);
-                        System.out.println("Payments success and add Order ");
-                        return CommonResponse.success();
+                    order.setPrice(intToBigDecimal.intValue());
+                    Receipt receipt = Receiptdto.getInstance().createReceipt( order,ReceiptTypes.QR_CODE_RECEIPT, new LetterHeadPrinting() ,nProduct.getPrice());
+                    receipt.print();
+                    orders.add(order);
+                    nProduct.setQuantity(nProduct.getQuantity()-1);
+                    if (nProduct.getQuantity()==0)
+                    {
+                        nProduct.setProductstate(Constantvalue.SALEOUT);
                     }
-                    System.out.println("Payments failed balance is not enough ");
-
-                } else if (payhelperDtos.getFlag()==3) {// pass carts {
-                    Cart cart = payhelperDtos.getCart();
-                    intToBigDecimal=new BigDecimal(cart.getPrice());
-                    intToBigDecimal=    goodsActivityContext.getPrice(intToBigDecimal);
-                    if (payments1.getBalance() >intToBigDecimal.intValue()) {
-                        MyOrder order = orderDto.getOrderByCart(cart);
-                        order.setPrice(intToBigDecimal.intValue());
-                        orders.add(order);
-                        cartService.deletCartbyid(cart.getCartid());
-                        Receipt receipt = Receiptdto.getInstance().createReceipt( order,ReceiptTypes.QR_CODE_RECEIPT, new LetterHeadPrinting() ,cart.getPrice());
-                        receipt.print();
-                        orderService.AddOrders(orders);
-                        System.out.println("Payments success and add Order ");
-                        return CommonResponse.success();
-                    }
-                    System.out.println("Payments failed balance is not enough ");
-
+                    nProductService.editProduct(nProduct);
+                    orderService.AddOrders(orders);
+                    System.out.println("Payments success and add Order ");
+                    return CommonResponse.success();
                 }
-             else {
-                    List<Cart> carts =payhelperDtos.getCarts();
-                    System.out.println("get carts");
+                System.out.println("Payments failed balance is not enough ");
+
+            } else if (payhelperDtos.getFlag()==3) {// pass carts {
+                Cart cart = payhelperDtos.getCart();
+                intToBigDecimal=new BigDecimal(cart.getPrice());
+                intToBigDecimal=    goodsActivityContext.getPrice(intToBigDecimal);
+                if (payments1.getBalance() >intToBigDecimal.intValue()) {
+                    MyOrder order = orderDto.getOrderByCart(cart);
+                    order.setPrice(intToBigDecimal.intValue());
+                    orders.add(order);
+                    cartService.deletCartbyid(cart.getCartid());
+                    Receipt receipt = Receiptdto.getInstance().createReceipt( order,ReceiptTypes.QR_CODE_RECEIPT, new LetterHeadPrinting() ,cart.getPrice());
+                    receipt.print();
+                    orderService.AddOrders(orders);
+                    System.out.println("Payments success and add Order ");
+                    return CommonResponse.success();
+                }
+                System.out.println("Payments failed balance is not enough ");
+
+            }
+            else {
+                List<Cart> carts =payhelperDtos.getCarts();
+                System.out.println("get carts");
                 for (Cart c : carts) {
                     price = price + c.getPrice();
                 }
-                    System.out.println("get price");
+                System.out.println("get price");
                 intToBigDecimal=new BigDecimal(price);
 //                    System.out.println("-----------------------------2");
                 intToBigDecimal= goodsActivityContext.getPrice(intToBigDecimal);

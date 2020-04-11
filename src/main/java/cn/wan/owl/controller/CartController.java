@@ -23,7 +23,7 @@ public class CartController {
     NProductService nProductService;
     @GetMapping("/list/cart")
     public Object list(){
-       int userid= UserUtil.getCurrentUser().getUserid();
+        int userid= UserUtil.getCurrentUser().getUserid();
         return CommonResponse.success(cartService.selectCartbyUserID(userid));
     }
     @PostMapping("/add")

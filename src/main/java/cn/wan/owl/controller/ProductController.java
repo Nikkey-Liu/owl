@@ -40,7 +40,7 @@ public class ProductController {
     private ProductService productService;
     @Autowired
     private NProductService nProductService;
-//    @Autowired
+    //    @Autowired
 //    private HttpServletRequest request;
 //    @Autowired
 //    private HttpServletResponse response;
@@ -64,7 +64,7 @@ public class ProductController {
     }
     @PostMapping("/undo")
     public Object undo() {
-       c.undoOperation();
+        c.undoOperation();
         if(c.getWidgetValue().equals( "" ))
         {
             return CommonResponse.failed();
@@ -86,10 +86,10 @@ public class ProductController {
             produces = MediaType.APPLICATION_PDF_VALUE )
     public ResponseEntity <byte[]>  approve( @PathVariable( "id") Integer  id ){
 
-         NProduct nProduct= nProductService.selectProductbyid(id);
+        NProduct nProduct= nProductService.selectProductbyid(id);
 
-         nProduct.setProductstate(Constantvalue.ONSALE);
-         nProductService.editProduct(nProduct);
+        nProduct.setProductstate(Constantvalue.ONSALE);
+        nProductService.editProduct(nProduct);
 
         ByteArrayOutputStream out = ReportService.getReportServiceInstance(ReportCreator.getReportFactory()).printDocument( "PDF",nProduct);
         if (out==null)

@@ -26,12 +26,12 @@ public class NUserServiceImpl implements NUserService {
 
     @Override
     public void insertNuser(NUser nUser) {
-      nUserMapper.insertSelective(nUser);
+        nUserMapper.insertSelective(nUser);
     }
 
     @Override
     public void editNuser(NUser nUser) {
-nUserMapper.updateByPrimaryKeySelective(nUser);
+        nUserMapper.updateByPrimaryKeySelective(nUser);
     }
 
     @Override
