@@ -27,26 +27,26 @@ public class OwlDataSourceConfig {
 
         DruidDataSource dataSource = new DruidDataSource();
 
-        //基本连接信息
+        //Basic connection information
         dataSource.setUrl(config.getUrl());
         dataSource.setUsername(config.getUsername());
         dataSource.setPassword(config.getPassword());
 
-        //具体配置
+        //Concrete arrangement
         dataSource.setInitialSize(1);
         dataSource.setMinIdle(0);
         dataSource.setMaxActive(1);
 
-        //空闲检测
+        //Idle detection
         dataSource.setTestWhileIdle(true);
-        //调用连接时检测是否可用
+        //Detect availability when calling connection
         dataSource.setTestOnBorrow(true);
         dataSource.setValidationQuery("select 1");
-        //获取连接的等待超时时间
+        //Waiting for connection timeout
         dataSource.setMaxWait(1000 * 20L);
-        //检测需要关闭的空闲连接
+        //Detect idle connections that need to be closed
         dataSource.setTimeBetweenEvictionRunsMillis(1000 * 30L);
-        //连接池的最小生存时间
+        //Connection pool minimum survival time
         dataSource.setMinEvictableIdleTimeMillis(1000 * 30L);
 
         return dataSource;

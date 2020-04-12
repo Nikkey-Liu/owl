@@ -29,21 +29,21 @@ public class CustomRealm extends AuthorizingRealm {
 
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        //1.获取用户输入的账号
+        // 1. Get the account number entered by the user
         String username = (String) token.getPrincipal();
-        //2.通过account从数据库中查找到user实体
+        // 2. Find the user entity from the database through account
         NUser user = nuserServiceImpl.loginQueryUsername(username);
         if (user == null) {
             return null;
         }
-        //3.通过SimpleAuthenticationInfo做身份处理
+        // 3. Identity processing through SimpleAuthenticationInfo
         SimpleAuthenticationInfo simpleAuthenticationInfo =
                 new SimpleAuthenticationInfo(user, user.getPassword(), getName());
-        //4.用户账号状态验证等其他业务操作
+        // 4. Other business operations such as user account status verification
 //        if (!user.getAvailable()) {
-//            throw new AuthenticationException("该账号已经被禁用");
+//            throw new AuthenticationException("The account has been disabled");
 //        }
-        //5.返回身份处理对象
+        //5.Return identity processing object
         return simpleAuthenticationInfo;
     }
 }

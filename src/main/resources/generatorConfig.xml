@@ -3,27 +3,27 @@
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
-<!-- 与项目运行无关，用来生成代码的 代码生成器(mybatis-generator)相关配置文件 -->
+<!-- Regardless of the running of the project, the configuration file of the code generator (mybatis-generator) used to generate the code -->
 <generatorConfiguration>
-    <!-- MBG代码生成器需要额外加载的依赖包-->
+    <!-- MBG code generator requires additional loaded dependencies-->
     <classPathEntry
             location="D:\worksoftware\apache-maven-3.6.3\repository\mysql\mysql-connector-java\5.1.6\mysql-connector-java-5.1.6.jar"/>
 
     <context id="mysql">
 
-        <!-- 生成Java文件的编码 ： 非必选-->
+        <!-- Generate Java file encoding: optional-->
         <property name="javaFileEncoding" value="UTF-8"/>
-        <!-- 格式化Java代码 ： 非必选-->
+        <!-- Format Java code: optional-->
         <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
-        <!-- 格式化XML代码 ： 非必选-->
+        <!-- Format XML code: optional-->
         <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
-        <!-- beginningDelimiter和endingDelimiter：指明数据库的用于标记数据库对象名的符号，比如ORACLE就是双引号，MYSQL默认是`反引号； -->
+        <!-- beginningDelimiter和endingDelimiter：Indicates the symbol used to mark the database object name in the database, such as ORACLE is double quotes, MYSQL defaults to `back quotes； -->
         <property name="beginningDelimiter" value="`"/>
         <property name="endingDelimiter" value="`"/>
 
         <commentGenerator>
             <property name="suppressDate" value="true"/>
-            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <!-- Whether to remove the automatically generated comment true: yes: false: no -->
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
 
@@ -34,22 +34,22 @@
                 password="123456">
         </jdbcConnection>
 
-        <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和
-            NUMERIC 类型解析为java.math.BigDecimal -->
+        <!-- The default is false, resolve the JDBC DECIMAL and NUMERIC types to Integer, when true, the JDBC DECIMAL and
+            NUMERIC  The type resolves to java.math.BigDecimal -->
         <javaTypeResolver type="org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl">
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
 
-        <!-- targetProject:生成PO类的位置 -->
+        <!-- targetProject:Where to generate the PO class -->
         <javaModelGenerator targetPackage="cn.wan.owl.model"
                             targetProject="src/main/java">
-            <!--  自动为每一个生成的类创建一个构造方法，构造方法包含了所有的field；而不是使用setter-->
+            <!--  Automatically create a constructor for each generated class, the constructor contains all the fields; instead of using setters-->
             <property name="constructorBased" value="false"/>
-            <!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
+            <!-- On the basis of targetPackage, another layer of package is generated according to the database schema, and the resulting class is placed under this package. The default is false-->
             <property name="enableSubPackages" value="false"/>
-            <!-- 是否创建一个不可变的类，如果为true，那么MBG会创建一个没有setter方法的类，取而代之的是类似constructorBased的类-->
+            <!-- Whether to create an immutable class, if true, then MBG will create a class without setter method, replaced by a class similar to constructorBased-->
             <property name="immutable" value="false"/>
-            <!-- 设置是否在getter方法中，对String类型字段调用trim()方法 -->
+            <!-- Set whether in the getter method, call trim () method on String type field -->
             <property name="trimStrings" value="false"/>
         </javaModelGenerator>
 
@@ -57,16 +57,16 @@
             <property name="enableSubPackages" value="false"/>
         </sqlMapGenerator>
 
-        <!-- targetPackage：mapper接口生成的位置 -->
+        <!-- targetPackage: the location where the mapper interface is generated -->
         <javaClientGenerator type="XMLMAPPER"
                              targetPackage="cn.wan.owl.mapper"
                              targetProject="src/main/java">
-            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <!-- enableSubPackages: whether to use schema as the suffix of the package -->
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
 
 
-        <!--配置实体
+        <!--Configuration entity
         <table schema="" tableName="t_user" domainObjectName="User"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"

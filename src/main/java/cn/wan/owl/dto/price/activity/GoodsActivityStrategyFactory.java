@@ -17,7 +17,8 @@ public class GoodsActivityStrategyFactory {
     private GoodActivity goodActivity3=new IntegralActivity();
 
     /**
-     * 根据活动类型 获取所对应的策略
+     *
+     * Get the corresponding strategy according to the type of activity
      * @param activityType
      */
     public GoodsActivityContext getGoodsActivityStrategy(String activityType){

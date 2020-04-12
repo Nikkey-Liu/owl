@@ -1,6 +1,6 @@
 {
   "code": 1,
-  "msg": "上传成功",
+  "msg": "Uploaded successfully",
   "data": {
     "url": [
       "images/logo.png",
