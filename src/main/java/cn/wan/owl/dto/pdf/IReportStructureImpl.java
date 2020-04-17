@@ -1,4 +1,4 @@
-package cn.wan.owl.service;
+package cn.wan.owl.dto.pdf;
 
 import cn.wan.owl.dto.pdf.IReportStructure;
 import cn.wan.owl.model.NProduct;
@@ -17,15 +17,15 @@ public class IReportStructureImpl implements IReportStructure {
   @Autowired
     NUserService nUserServiceimpl;
     @Override
-    public String getFooter() {
+    public String buildFooter() {
         return "Approve Date : "+new Date().toString();
     }
     @Override
-    public String getHeader() {
+    public String buildHeader() {
         return "Product Approve File";
     }
     @Override
-   public PdfPTable getBody(NProduct nProduct, PdfPTable table)
+   public PdfPTable buildBody(NProduct nProduct, PdfPTable table)
     {
         System.out.println(nProduct.getUserid());
         Integer userid= nProduct.getUserid();

@@ -2,24 +2,20 @@ package cn.wan.owl.dto.interceptor.framework;
 
 import cn.wan.owl.dto.interceptor.framework.Service.NullService;
 import cn.wan.owl.dto.interceptor.framework.Service.Service;
-import cn.wan.owl.dto.interceptor.framework.Service.ServiceImp;
 import cn.wan.owl.dto.interceptor.interceptors.Interceptor;
 import cn.wan.owl.dto.interceptor.framework.Service.Message;
 
-import java.util.ArrayList;
-import java.util.List;
 
-
-public class Framework {
+public class IntterceptorHelper {
     private  Dispatcher interceptor_list  ;
     private  Service service;//List<Service> services; //List也行
 
-    public Framework(Service serviceImp){
+    public IntterceptorHelper(Service serviceImp){
         this();
         service = serviceImp;
     }
 
-    public Framework() {
+    public IntterceptorHelper() {
         interceptor_list = new Dispatcher();
         service = new NullService();
     }
