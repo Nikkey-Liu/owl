@@ -10,7 +10,7 @@ public class GoodsActivityContext {
     }
 
     /**
-     * 获取商品价格
+     * Get product price
      * @param amount
      * @return
      */

@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.*;
 
 @Configuration
 public class MyMvcConfig implements WebMvcConfigurer {
-    @Bean //将组件注册在容器
+    @Bean
     public HandlerInterceptor getLoginInterceptor(){
         return new LoginHandlerInterceptor();
     }

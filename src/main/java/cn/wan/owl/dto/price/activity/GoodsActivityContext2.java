@@ -14,7 +14,7 @@ public class GoodsActivityContext2 {
     }
 
     /**
-     * 获取最后的支付价格
+     * Get the final payment price
      * @param amount
      * @return
      */

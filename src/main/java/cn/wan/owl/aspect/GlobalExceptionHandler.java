@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    /**
-     * 非自定义异常捕获
-     */
+
     @ExceptionHandler(Throwable.class)
     @ResponseBody
     public Object handleGlobalException(Throwable t) {

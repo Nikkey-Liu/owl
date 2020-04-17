@@ -18,27 +18,27 @@ public class Purchase {
     private Integer productId;
 
     /**
-     * 买入总额
+     * Total purchase
      */
     private Double rental;
 
     /**
-     * 单位净值
+     * Net unit
      */
     private Double nav;
 
     /**
-     * 购入份数
+     * Purchases
      */
     private Double quantity;
 
     /**
-     * 确认总额
+     * Confirm the total
      */
     private Double confirmRental;
 
     /**
-     * 手续费
+     * Handling fee
      */
     private Double poundage;
 

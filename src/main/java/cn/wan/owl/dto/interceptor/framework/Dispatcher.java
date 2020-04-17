@@ -21,7 +21,8 @@ public class Dispatcher {
         }
     }
 
-//    Service service; //    不是很确定service是属于Dispatcher 的还是Framework的
+//    Service service;
+//    Not sure if the service belongs to Dispatcher or Framework
 //    public void setServiceImp(ServiceImp serviceImp){
 //        this.service = serviceImp;
 //    }

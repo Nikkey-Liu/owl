@@ -16,7 +16,7 @@ import java.util.Map;
 public class ShiroConfig {
 
     /**
-     * 配置Shiro的Web过滤器，拦截浏览器请求并交给SecurityManager处理
+     * Configure Shiro's web filter to intercept browser requests and pass them to SecurityManager
      *
      * @return
      */
@@ -25,11 +25,11 @@ public class ShiroConfig {
 
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
 
-        //配置拦截链 使用LinkedHashMap,因为LinkedHashMap是有序的，shiro会根据添加的顺序进行拦截
-        // Map<K,V> K指的是拦截的url V值的是该url是否拦截
+        //Configure the interception chain Use LinkedHashMap, because LinkedHashMap is ordered, shiro will intercept according to the order of addition
+        // Map<K,V> K refers to the intercepted url V value is whether the url is intercepted
         Map<String, String> filterChainMap = new LinkedHashMap<>(16);
 
-        //authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问,先配置anon再配置authc。
+        //authc: All URLs must be authenticated before they can be accessed; anon: All URLs can be accessed anonymously, configure anon first and then configure authc.
 //        filterChainMap.put("/login", "anon");
 //        filterChainMap.put("/ui/register", "anon");
         filterChainMap.put("/register/**", "anon");
@@ -37,7 +37,7 @@ public class ShiroConfig {
         filterChainMap.put("/static/**", "anon");
         filterChainMap.put("/**", "authc");
 
-        //设置拦截请求后跳转的URL.
+        //Set the URL to jump after intercepting the request.
         shiroFilterFactoryBean.setLoginUrl("/login/ui");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainMap);
         shiroFilterFactoryBean.setSecurityManager(securityManager);
@@ -47,7 +47,7 @@ public class ShiroConfig {
     @Bean
     public SecurityManager securityManager() {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-        //将自定义的realm交给SecurityManager管理
+        //Hand over custom realm to SecurityManager
         securityManager.setRealm(myShiroRealm());
         return securityManager;
     }

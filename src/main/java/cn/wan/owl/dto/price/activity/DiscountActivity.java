@@ -2,7 +2,7 @@ package cn.wan.owl.dto.price.activity;
 
 import java.math.BigDecimal;
 
-public class DiscountActivity implements GoodActivity{ //折扣
+public class DiscountActivity implements GoodActivity{ //discount
     private double discount ;
 
     @Override
