@@ -1,5 +1,7 @@
 package cn.wan.owl.model;
 
+import cn.wan.owl.dto.calculator.ItemElement;
+import cn.wan.owl.dto.calculator.ShoppingCartVisitor;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,7 +11,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Product {
+public class Product implements ItemElement {
     private Integer id;
 
     private String kind;
@@ -100,4 +102,18 @@ public class Product {
 
     private Integer state;
 
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    private int price;
+
+    @Override
+    public int accept(ShoppingCartVisitor visitor) {
+        return visitor.visit(this);
+    }
 }

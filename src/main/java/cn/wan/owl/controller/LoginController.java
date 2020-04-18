@@ -40,7 +40,6 @@ public class LoginController {
             return CommonResponse.failed();
         }
     }
-
     @Autowired
     private UserService userService;
 

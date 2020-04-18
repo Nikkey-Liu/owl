@@ -1,6 +1,8 @@
 <div class="layuimini-container layui-anim layui-anim-upbit">
     <div class="layuimini-main">
         <legend>Welcome to UL Student Market :myProduct</legend>
+        <p > visitor output:</p>
+        <p th:text="${#session.getAttribute('total')}" th:unless="${session == null}"></p>
 
         <script type="text/html" id="toolbarDemo">
             <div class="layui-btn-container">
@@ -17,6 +19,7 @@
         </script>
 
     </div>
+
 </div>
 <script>
     layui.use(['form', 'table', 'layuimini', 'element'], function () {

@@ -1,5 +1,7 @@
 package cn.wan.owl.model;
 
+import cn.wan.owl.dto.calculator.ItemElement;
+import cn.wan.owl.dto.calculator.ShoppingCartVisitor;
 import cn.wan.owl.dto.pdf.IReportStructure;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -12,7 +14,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class NProduct {
+public class NProduct implements ItemElement {
     private Integer productid;
 
     private String productname;
@@ -84,4 +86,8 @@ public class NProduct {
     }
 
 
+    @Override
+    public int accept(ShoppingCartVisitor visitor) {
+        return visitor.visit(this);
+    }
 }
