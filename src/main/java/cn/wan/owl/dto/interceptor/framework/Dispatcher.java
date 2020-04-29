@@ -1,22 +1,20 @@
 package cn.wan.owl.dto.interceptor.framework;
 
-import cn.wan.owl.dto.interceptor.framework.Service.Service;
-import cn.wan.owl.dto.interceptor.framework.Service.ServiceImp;
-import cn.wan.owl.dto.interceptor.interceptors.Interceptor;
+import cn.wan.owl.dto.interceptor.interceptors.MyInterceptor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class Dispatcher {
-    private List<Interceptor> interceptors = new ArrayList<Interceptor>();
+    private List<MyInterceptor> myInterceptors = new ArrayList<MyInterceptor>();
 
-    public void addInterceptor(Interceptor i){
-        interceptors.add(i);
+    public void addInterceptor(MyInterceptor i){
+        myInterceptors.add(i);
     }
 
     public void execute(Context ctx){ //callback
-        for (Interceptor i : interceptors ) {
+        for (MyInterceptor i : myInterceptors) {
             i.execute(ctx);
         }
     }

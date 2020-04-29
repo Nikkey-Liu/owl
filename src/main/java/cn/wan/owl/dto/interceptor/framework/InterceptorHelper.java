@@ -2,7 +2,7 @@ package cn.wan.owl.dto.interceptor.framework;
 
 import cn.wan.owl.dto.interceptor.framework.Service.NullService;
 import cn.wan.owl.dto.interceptor.framework.Service.Service;
-import cn.wan.owl.dto.interceptor.interceptors.Interceptor;
+import cn.wan.owl.dto.interceptor.interceptors.MyInterceptor;
 import cn.wan.owl.dto.interceptor.framework.Service.Message;
 
 
@@ -28,8 +28,8 @@ public class InterceptorHelper {
         this.service = service;
     }
 
-    public void addInterceptor(Interceptor interceptor) {
-        interceptor_list.addInterceptor(interceptor);
+    public void addInterceptor(MyInterceptor myInterceptor) {
+        interceptor_list.addInterceptor(myInterceptor);
     }
 
 //    public void addService(Service service){

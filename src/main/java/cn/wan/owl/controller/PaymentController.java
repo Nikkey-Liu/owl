@@ -1,6 +1,10 @@
 package cn.wan.owl.controller;
 
 import cn.wan.owl.dto.*;
+import cn.wan.owl.dto.interceptor.framework.InterceptorHelper;
+import cn.wan.owl.dto.interceptor.framework.Service.Message;
+import cn.wan.owl.dto.interceptor.framework.Service.ServiceImp;
+import cn.wan.owl.dto.interceptor.interceptors.PaymentInterceptor;
 import cn.wan.owl.dto.price.activity.GoodsActivityContext;
 import cn.wan.owl.dto.price.activity.GoodsActivityStrategyFactory;
 import cn.wan.owl.dto.receipt.LetterHeadPrinting;
@@ -73,8 +77,10 @@ public class PaymentController {
         System.out.println(payhelperDtos.getFlag());
         OrderDto orderDto = new OrderDto();
         System.out.println("--------------------------------");
+
         Payments payments1 = paymentsService.getPamentsBypaymentNumber(paymentsDto.getPayments().getCardnumber());
         boolean fl = paymentsDto.checkPayments(payments1, paymentsDto.getPayments());
+
         int price = 0;
         String activityType= Constantvalue.PAYMENT_TYPE_fullReduceActivity;//change the payment type
 
@@ -84,7 +90,11 @@ public class PaymentController {
         BigDecimal intToBigDecimal;
         if (fl) {// cofirm payment information
             System.out.println("// cofirm payment information");
+            PaymentInterceptor paymentInterceptor = new PaymentInterceptor();
+            InterceptorHelper interceptorFramework = new InterceptorHelper(new ServiceImp()); // service是concertFramework的内部提供的服务。
 
+            interceptorFramework.addInterceptor(paymentInterceptor); // register
+            interceptorFramework.event(new Message(paymentsDto) );
             System.out.println("// pass carts");
             if (payhelperDtos.getFlag()==1) {
                 int id =payhelperDtos.getId();
