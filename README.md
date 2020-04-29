@@ -6,7 +6,8 @@
 5. Factory method design patter creat instance
 6. myInterceptor depend on framework with spring boot for check login
 7. strategy design pattern
-8. Shiro framework for login
+8. Visitor Design Pattern for getting total value of items in cart
+9. Shiro framework for login
 
 
 
